@@ -1,0 +1,8 @@
+Model Information:
+* title:	LODs - Samsung-7kg-ww70t4020cx
+* source:	https://sketchfab.com/3d-models/lods-samsung-7kg-ww70t4020cx-be1619d9449b4eddad0d6d3d70b6ceaa
+* author:	Unity Fan youtube channel (https://sketchfab.com/unityfan777)
+
+Model License:
+* license type:	SKETCHFAB Standard (https://sketchfab.com/licenses)
+* requirements:	Under basic restrictions, use worldwide, on all types of media, commercially or not, and in all types of derivative works
