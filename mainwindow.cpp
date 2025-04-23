@@ -373,3 +373,206 @@ void MainWindow::on_goBackButton_2_clicked()
 
 }
 
+
+// FOR SYNTHETYCS ----------------------------------------------------------
+
+void MainWindow::on_temperatureBox_3_currentTextChanged(const QString &arg1)
+{
+    endTime = 2.0;
+
+    if(arg1 == "60°C")  tempTime = 10;
+    else if(arg1 == "40°C")tempTime = 5;
+    else if(arg1 == "20°C") tempTime = -10;
+    else tempTime = 0;
+
+
+    ui->hourLabel->setText(QString::number( calculateEndtime(), 'f', 2));
+}
+
+
+void MainWindow::on_spinBox_3_currentTextChanged(const QString &arg1)
+{
+    endTime = 2.0;
+    if(arg1 == "1200RPM")  spinTime = 10;
+    else if(arg1 == "1000RPM") spinTime = 5;
+    else if(arg1 == "600RPM") spinTime = -5;
+    else spinTime = 0;
+
+
+    ui->hourLabel->setText(QString::number( calculateEndtime(), 'f', 2));
+}
+
+
+void MainWindow::on_rinseBox_3_currentTextChanged(const QString &arg1)
+{
+    on_rinseBox_currentTextChanged(arg1);
+
+    ui->hourLabel->setText(QString::number( calculateEndtime(), 'f', 2));
+}
+
+
+void MainWindow::on_ecomodeBox_3_currentTextChanged(const QString &arg1)
+{
+    endTime = 2.0;
+    if(arg1 == "On")ecoTime = 10;
+    else ecoTime = 0;
+
+
+    ui->hourLabel->setText(QString::number( calculateEndtime(), 'f', 2));
+}
+
+
+void MainWindow::on_startButton_3_clicked()
+{
+
+}
+
+
+void MainWindow::on_goBackButton_3_clicked()
+{
+
+}
+
+// FOR WOOL/SILK PAGE --------------------------------------------------
+void MainWindow::on_temperatureBox_4_currentTextChanged(const QString &arg1)
+{
+    endTime = 2.0;
+
+    if(arg1 == "30°C")  tempTime = 5;
+    else if(arg1 == "40°C")tempTime = 10;
+    else tempTime = 0;
+
+
+    ui->hourLabel->setText(QString::number( calculateEndtime(), 'f', 2));
+}
+
+
+void MainWindow::on_spinBox_4_currentTextChanged(const QString &arg1)
+{
+    endTime = 2.0;
+    if(arg1 == "600RPM") spinTime = 3;
+    else if(arg1 == "800RPM") spinTime = 5;
+    else spinTime = 0;
+
+
+    ui->hourLabel->setText(QString::number( calculateEndtime(), 'f', 2));
+}
+
+
+void MainWindow::on_rinseBox_4_currentTextChanged(const QString &arg1)
+{
+    endTime = 2.0;
+    if(arg1 == "3")  rinseTime = 10;
+    else if(arg1 == "2")rinseTime = 5;
+    else if(arg1 == "0")rinseTime = -5;
+    else rinseTime = 0;
+
+    ui->hourLabel->setText(QString::number( calculateEndtime(), 'f', 2));
+}
+
+
+void MainWindow::on_ecomodeBox_4_currentTextChanged(const QString &arg1)
+{
+    endTime = 2.0;
+    if(arg1 == "On")ecoTime = -5;
+    else ecoTime = 0;
+
+
+    ui->hourLabel->setText(QString::number( calculateEndtime(), 'f', 2));
+}
+
+
+void MainWindow::on_startButton_4_clicked()
+{
+
+}
+
+
+void MainWindow::on_goBackButton_4_clicked()
+{
+
+}
+
+// FOR ANTI-ALLERGY PROGRAM
+
+void MainWindow::on_temperatureBox_5_currentTextChanged(const QString &arg1)
+{
+    if(arg1 == "70°C")  tempTime = 10;
+    else if(arg1 == "90°C")tempTime = 20;
+    else tempTime = 0;
+
+
+    ui->hourLabel->setText(QString::number( calculateEndtime(), 'f', 2));
+}
+
+
+void MainWindow::on_spinBox_5_currentTextChanged(const QString &arg1)
+{
+    endTime = 2.0;
+    if(arg1 == "1200RPM") spinTime = 5;
+    else if(arg1 == "1400RPM") spinTime = 10;
+    else spinTime = 0;
+
+
+    ui->hourLabel->setText(QString::number( calculateEndtime(), 'f', 2));
+}
+
+
+void MainWindow::on_rinseBox_5_currentTextChanged(const QString &arg1)
+{
+    endTime = 2.0;
+    if(arg1 == "3")  rinseTime = 10;
+    else if(arg1 == "4")rinseTime = 20;
+    else rinseTime = 0;
+
+    ui->hourLabel->setText(QString::number( calculateEndtime(), 'f', 2));
+}
+
+
+void MainWindow::on_ecomodeBox_5_currentTextChanged(const QString &arg1)
+{
+    endTime = 2.0;
+    if(arg1 == "On")ecoTime = -20;
+    else ecoTime = 0;
+
+
+    ui->hourLabel->setText(QString::number( calculateEndtime(), 'f', 2));
+}
+
+
+void MainWindow::on_steamBox_currentTextChanged(const QString &arg1)
+{
+    endTime = 2.0;
+    if(arg1 == "On")steamTime= -20;
+    else steamTime = 0;
+
+    float res = adjustMinutes(calculateEndtime(), steamTime);
+
+    ui->hourLabel->setText(QString::number( res, 'f', 2));
+}
+
+
+void MainWindow::on_startButton_5_clicked()
+{
+
+}
+
+
+void MainWindow::on_goBackButton_5_clicked()
+{
+
+}
+
+// NON STOP page
+
+void MainWindow::on_temperatureBox_6_currentTextChanged(const QString &arg1)
+{
+
+}
+
+
+void MainWindow::on_spinBox_6_currentTextChanged(const QString &arg1)
+{
+
+}
+

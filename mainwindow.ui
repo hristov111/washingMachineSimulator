@@ -34,7 +34,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="programsPage">
      <widget class="QPushButton" name="cottonsButton">
@@ -162,6 +162,346 @@ color:blue;
       </property>
      </widget>
     </widget>
+    <widget class="QWidget" name="cottonsEcoPage">
+     <widget class="QLabel" name="title_2">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>0</y>
+        <width>201</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLabel {
+font-size:20px;
+font-weight:bold;
+}</string>
+      </property>
+      <property name="text">
+       <string>Cottons Eco Program</string>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="textEdit_2">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>40</y>
+        <width>221</width>
+        <height>201</height>
+       </rect>
+      </property>
+      <property name="html">
+       <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+hr { height: 1px; border-width: 0; }
+li.unchecked::marker { content: &quot;\2610&quot;; }
+li.checked::marker { content: &quot;\2612&quot;; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Load Capacity:&lt;/span&gt; Up to 8 kg&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Water Temperature:&lt;/span&gt; 20°C – 60°C&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Spin Speed:&lt;/span&gt; 1400 RPM (adjustable)&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Cycle Duration:&lt;/span&gt; ~2.5 hours (varies with settings)&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Purpose:&lt;/span&gt; For durable cotton fabrics (e.g., t-shirts, sheets, towels, jeans) with a focus on &lt;span style=&quot; font-weight:700;&quot;&gt;reduced energy and water consumption&lt;/span&gt;. Uses &lt;span style=&quot; font-weight:700;&quot;&gt;longer wash times&lt;/span&gt; at &lt;span style=&quot; font-weight:700;&quot;&gt;lower temperatures&lt;/span&gt; to save energy while still providing effective cleaning.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="tempLabel_2">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>250</y>
+        <width>131</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLabel{
+font-size:20px;
+}</string>
+      </property>
+      <property name="text">
+       <string>Temperature:</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="temperatureBox_2">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>250</y>
+        <width>91</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QComboBox{
+font-size:15px;
+}</string>
+      </property>
+      <property name="editable">
+       <bool>false</bool>
+      </property>
+      <item>
+       <property name="text">
+        <string>40°C</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>60°C</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>20°C</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>30°C</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QLabel" name="spinLabel_2">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>290</y>
+        <width>131</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLabel{
+font-size:20px;
+}</string>
+      </property>
+      <property name="text">
+       <string>Spin:</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="spinBox_2">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>290</y>
+        <width>91</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QComboBox{
+font-size:15px;
+}</string>
+      </property>
+      <property name="editable">
+       <bool>false</bool>
+      </property>
+      <item>
+       <property name="text">
+        <string>1200RPM</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>600RPM</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>800RPM</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>1000RPM</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>1400RPM</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QLabel" name="rinseLabel_2">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>330</y>
+        <width>131</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLabel{
+font-size:20px;
+}</string>
+      </property>
+      <property name="text">
+       <string>Rinse Cycles:</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="rinseBox_2">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>330</y>
+        <width>91</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QComboBox{
+font-size:15px;
+}</string>
+      </property>
+      <property name="editable">
+       <bool>false</bool>
+      </property>
+      <item>
+       <property name="text">
+        <string>2</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>1</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>3</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string/>
+       </property>
+      </item>
+     </widget>
+     <widget class="QLabel" name="ecomodeLabel_2">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>370</y>
+        <width>131</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLabel{
+font-size:20px;
+}</string>
+      </property>
+      <property name="text">
+       <string>Eco Mode:</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="ecomodeBox_2">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>370</y>
+        <width>91</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QComboBox{
+font-size:15px;
+}</string>
+      </property>
+      <property name="editable">
+       <bool>false</bool>
+      </property>
+      <item>
+       <property name="text">
+        <string>On</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Off</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QLabel" name="hourLabel_2">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>430</y>
+        <width>71</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLabel {
+font-size:20px;
+border:2px solid black;
+padding:6px;
+}</string>
+      </property>
+      <property name="text">
+       <string>3</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_3">
+      <property name="geometry">
+       <rect>
+        <x>110</x>
+        <y>440</y>
+        <width>81</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLabel{
+font-size:20px;
+}</string>
+      </property>
+      <property name="text">
+       <string>hours</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="startButton_2">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>500</y>
+        <width>101</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton{
+font-size:20px;
+padding:5px;
+}</string>
+      </property>
+      <property name="text">
+       <string>START</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="goBackButton_2">
+      <property name="geometry">
+       <rect>
+        <x>120</x>
+        <y>500</y>
+        <width>101</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton{
+font-size:20px;
+padding:5px;
+}</string>
+      </property>
+      <property name="text">
+       <string>GO BACK</string>
+      </property>
+     </widget>
+    </widget>
     <widget class="QWidget" name="cottonsDescPage">
      <widget class="QLabel" name="title">
       <property name="geometry">
@@ -186,7 +526,7 @@ font-weight:bold;
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>50</y>
+        <y>40</y>
         <width>221</width>
         <height>171</height>
        </rect>
@@ -504,6 +844,1367 @@ font-size:20px;
       </property>
       <property name="text">
        <string>hours</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="syntheticsPage">
+     <widget class="QLabel" name="title_3">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>0</y>
+        <width>191</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLabel {
+font-size:20px;
+font-weight:bold;
+}</string>
+      </property>
+      <property name="text">
+       <string>Synthetics Program</string>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="textEdit_3">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>40</y>
+        <width>221</width>
+        <height>171</height>
+       </rect>
+      </property>
+      <property name="html">
+       <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+hr { height: 1px; border-width: 0; }
+li.unchecked::marker { content: &quot;\2610&quot;; }
+li.checked::marker { content: &quot;\2612&quot;; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Load Capacity:&lt;/span&gt; Up to 4 kg&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Water Temperature:&lt;/span&gt; 20°C – 60°C&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Spin Speed:&lt;/span&gt; 800 – 1200 RPM (adjustable)&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Cycle Duration:&lt;/span&gt; ~1 hour 20 minutes (depends on options)&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Purpose:&lt;/span&gt; For synthetic fabrics like polyester, acrylic, and blended fabrics (e.g., sportswear, office wear).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="tempLabel_3">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>220</y>
+        <width>131</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLabel{
+font-size:20px;
+}</string>
+      </property>
+      <property name="text">
+       <string>Temperature:</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="temperatureBox_3">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>220</y>
+        <width>91</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QComboBox{
+font-size:15px;
+}</string>
+      </property>
+      <property name="editable">
+       <bool>false</bool>
+      </property>
+      <item>
+       <property name="text">
+        <string>30°C</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>20°C</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>40°C</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>60°C</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QLabel" name="spinLabel_3">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>260</y>
+        <width>61</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLabel{
+font-size:20px;
+}</string>
+      </property>
+      <property name="text">
+       <string>Spin:</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="spinBox_3">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>260</y>
+        <width>91</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QComboBox{
+font-size:15px;
+}</string>
+      </property>
+      <property name="editable">
+       <bool>false</bool>
+      </property>
+      <item>
+       <property name="text">
+        <string>800RPM</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>600RPM</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>1000RPM</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>1200RPM</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QLabel" name="rinseLabel_3">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>310</y>
+        <width>131</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLabel{
+font-size:20px;
+}</string>
+      </property>
+      <property name="text">
+       <string>Rinse Cycles:</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="rinseBox_3">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>310</y>
+        <width>91</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QComboBox{
+font-size:15px;
+}</string>
+      </property>
+      <property name="editable">
+       <bool>false</bool>
+      </property>
+      <item>
+       <property name="text">
+        <string>2</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>1</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>3</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string/>
+       </property>
+      </item>
+     </widget>
+     <widget class="QLabel" name="ecomodeLabel_3">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>360</y>
+        <width>131</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLabel{
+font-size:20px;
+}</string>
+      </property>
+      <property name="text">
+       <string>Eco Mode:</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="ecomodeBox_3">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>360</y>
+        <width>91</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QComboBox{
+font-size:15px;
+}</string>
+      </property>
+      <property name="editable">
+       <bool>false</bool>
+      </property>
+      <item>
+       <property name="text">
+        <string>Off</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>On</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QLabel" name="hourLabel_3">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>410</y>
+        <width>71</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLabel {
+font-size:20px;
+border:2px solid black;
+padding:6px;
+}</string>
+      </property>
+      <property name="text">
+       <string>1</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_4">
+      <property name="geometry">
+       <rect>
+        <x>120</x>
+        <y>410</y>
+        <width>81</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLabel{
+font-size:20px;
+}</string>
+      </property>
+      <property name="text">
+       <string>hours</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="startButton_3">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>500</y>
+        <width>101</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton{
+font-size:20px;
+padding:5px;
+}</string>
+      </property>
+      <property name="text">
+       <string>START</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="goBackButton_3">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>500</y>
+        <width>101</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton{
+font-size:20px;
+padding:5px;
+}</string>
+      </property>
+      <property name="text">
+       <string>GO BACK</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="woolSilkPage">
+     <widget class="QLabel" name="title_4">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>191</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLabel {
+font-size:20px;
+font-weight:bold;
+}</string>
+      </property>
+      <property name="text">
+       <string>Wool/Silk Program</string>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="textEdit_4">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>40</y>
+        <width>231</width>
+        <height>171</height>
+       </rect>
+      </property>
+      <property name="html">
+       <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+hr { height: 1px; border-width: 0; }
+li.unchecked::marker { content: &quot;\2610&quot;; }
+li.checked::marker { content: &quot;\2612&quot;; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Load Capacity:&lt;/span&gt; Up to &lt;span style=&quot; font-weight:700;&quot;&gt;2 kg&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Water Temperature:&lt;/span&gt; &lt;span style=&quot; font-weight:700;&quot;&gt;20°C – 40°C&lt;/span&gt; (adjustable)&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Spin Speed:&lt;/span&gt; &lt;span style=&quot; font-weight:700;&quot;&gt;400 – 800 RPM&lt;/span&gt; (adjustable)&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Cycle Duration:&lt;/span&gt; ~&lt;span style=&quot; font-weight:700;&quot;&gt;40 – 60 minutes&lt;/span&gt; (depends on selected options)&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Purpose:&lt;/span&gt; Specially designed for &lt;span style=&quot; font-weight:700;&quot;&gt;delicate fabrics&lt;/span&gt; such as &lt;span style=&quot; font-weight:700;&quot;&gt;wool&lt;/span&gt;, &lt;span style=&quot; font-weight:700;&quot;&gt;silk&lt;/span&gt;, and &lt;span style=&quot; font-weight:700;&quot;&gt;fine knits&lt;/span&gt;. This cycle provides a gentle wash with reduced mechanical action and lower temperatures to prevent shrinkage, stretching, or fabric damage. Ideal for hand-wash only items requiring machine care.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="tempLabel_4">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>220</y>
+        <width>131</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLabel{
+font-size:20px;
+}</string>
+      </property>
+      <property name="text">
+       <string>Temperature:</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="temperatureBox_4">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>220</y>
+        <width>91</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QComboBox{
+font-size:15px;
+}</string>
+      </property>
+      <property name="editable">
+       <bool>false</bool>
+      </property>
+      <item>
+       <property name="text">
+        <string>20°C</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>30°C</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>40°C</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QLabel" name="spinLabel_4">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>260</y>
+        <width>61</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLabel{
+font-size:20px;
+}</string>
+      </property>
+      <property name="text">
+       <string>Spin:</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="spinBox_4">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>260</y>
+        <width>91</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QComboBox{
+font-size:15px;
+}</string>
+      </property>
+      <property name="editable">
+       <bool>false</bool>
+      </property>
+      <item>
+       <property name="text">
+        <string>400RPM</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>600RPM</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>800RPM</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QLabel" name="rinseLabel_4">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>300</y>
+        <width>131</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLabel{
+font-size:20px;
+}</string>
+      </property>
+      <property name="text">
+       <string>Rinse Cycles:</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="rinseBox_4">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>300</y>
+        <width>91</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QComboBox{
+font-size:15px;
+}</string>
+      </property>
+      <property name="editable">
+       <bool>false</bool>
+      </property>
+      <item>
+       <property name="text">
+        <string>1</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>0</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>2</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>3</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string/>
+       </property>
+      </item>
+     </widget>
+     <widget class="QLabel" name="ecomodeLabel_4">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>350</y>
+        <width>131</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLabel{
+font-size:20px;
+}</string>
+      </property>
+      <property name="text">
+       <string>Eco Mode:</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="ecomodeBox_4">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>350</y>
+        <width>91</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QComboBox{
+font-size:15px;
+}</string>
+      </property>
+      <property name="editable">
+       <bool>false</bool>
+      </property>
+      <item>
+       <property name="text">
+        <string>On</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Off</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QLabel" name="hourLabel_4">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>410</y>
+        <width>71</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLabel {
+font-size:20px;
+border:2px solid black;
+padding:6px;
+}</string>
+      </property>
+      <property name="text">
+       <string>0.40</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_5">
+      <property name="geometry">
+       <rect>
+        <x>110</x>
+        <y>420</y>
+        <width>81</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLabel{
+font-size:20px;
+}</string>
+      </property>
+      <property name="text">
+       <string>hours</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="startButton_4">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>500</y>
+        <width>101</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton{
+font-size:20px;
+padding:5px;
+}</string>
+      </property>
+      <property name="text">
+       <string>START</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="goBackButton_4">
+      <property name="geometry">
+       <rect>
+        <x>120</x>
+        <y>500</y>
+        <width>101</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton{
+font-size:20px;
+padding:5px;
+}</string>
+      </property>
+      <property name="text">
+       <string>GO BACK</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="antiAllergyPage">
+     <widget class="QLabel" name="title_5">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>0</y>
+        <width>211</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLabel {
+font-size:20px;
+font-weight:bold;
+}</string>
+      </property>
+      <property name="text">
+       <string>Anti-Allergy Program</string>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="textEdit_5">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>40</y>
+        <width>231</width>
+        <height>171</height>
+       </rect>
+      </property>
+      <property name="html">
+       <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+hr { height: 1px; border-width: 0; }
+li.unchecked::marker { content: &quot;\2610&quot;; }
+li.checked::marker { content: &quot;\2612&quot;; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Load Capacity:&lt;/span&gt; Up to &lt;span style=&quot; font-weight:700;&quot;&gt;6 kg&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Water Temperature:&lt;/span&gt; &lt;span style=&quot; font-weight:700;&quot;&gt;60°C – 90°C&lt;/span&gt; (adjustable)&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Spin Speed:&lt;/span&gt; &lt;span style=&quot; font-weight:700;&quot;&gt;1000 – 1400 RPM&lt;/span&gt; (adjustable)&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Cycle Duration:&lt;/span&gt; ~&lt;span style=&quot; font-weight:700;&quot;&gt;2 – 2.5 hours&lt;/span&gt; (depends on options)&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Purpose:&lt;/span&gt; Designed to &lt;span style=&quot; font-weight:700;&quot;&gt;eliminate allergens&lt;/span&gt;, such as &lt;span style=&quot; font-weight:700;&quot;&gt;pollen&lt;/span&gt;, &lt;span style=&quot; font-weight:700;&quot;&gt;dust mites&lt;/span&gt;, and &lt;span style=&quot; font-weight:700;&quot;&gt;pet dander&lt;/span&gt;, through &lt;span style=&quot; font-weight:700;&quot;&gt;high-temperature washes&lt;/span&gt; and &lt;span style=&quot; font-weight:700;&quot;&gt;extended rinse cycles&lt;/span&gt;. Ideal for bedding, towels, baby clothes, and garments for those with sensitive skin or allergies. Includes an intensive rinse phase to ensure all detergent residues are removed.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="tempLabel_5">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>220</y>
+        <width>131</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLabel{
+font-size:20px;
+}</string>
+      </property>
+      <property name="text">
+       <string>Temperature:</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="temperatureBox_5">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>220</y>
+        <width>91</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QComboBox{
+font-size:15px;
+}</string>
+      </property>
+      <property name="editable">
+       <bool>false</bool>
+      </property>
+      <item>
+       <property name="text">
+        <string>60°C</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>70°C</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>90°C</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QLabel" name="spinLabel_5">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>260</y>
+        <width>61</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLabel{
+font-size:20px;
+}</string>
+      </property>
+      <property name="text">
+       <string>Spin:</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="spinBox_5">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>260</y>
+        <width>91</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QComboBox{
+font-size:15px;
+}</string>
+      </property>
+      <property name="editable">
+       <bool>false</bool>
+      </property>
+      <item>
+       <property name="text">
+        <string>1000RPM</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>1200RPM</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>1400RPM</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QLabel" name="rinseLabel_5">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>300</y>
+        <width>131</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLabel{
+font-size:20px;
+}</string>
+      </property>
+      <property name="text">
+       <string>Rinse Cycles:</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="rinseBox_5">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>300</y>
+        <width>91</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QComboBox{
+font-size:15px;
+}</string>
+      </property>
+      <property name="editable">
+       <bool>false</bool>
+      </property>
+      <item>
+       <property name="text">
+        <string>2</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>3</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>4</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string/>
+       </property>
+      </item>
+     </widget>
+     <widget class="QLabel" name="ecomodeLabel_5">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>340</y>
+        <width>131</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLabel{
+font-size:20px;
+}</string>
+      </property>
+      <property name="text">
+       <string>Eco Mode:</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="ecomodeBox_5">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>340</y>
+        <width>91</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QComboBox{
+font-size:15px;
+}</string>
+      </property>
+      <property name="editable">
+       <bool>false</bool>
+      </property>
+      <item>
+       <property name="text">
+        <string>Off</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>On</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QLabel" name="ecomodeLabel_6">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>380</y>
+        <width>131</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLabel{
+font-size:20px;
+}</string>
+      </property>
+      <property name="text">
+       <string>Steam Option</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="ecomodeBox_6">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>380</y>
+        <width>91</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QComboBox{
+font-size:15px;
+}</string>
+      </property>
+      <property name="editable">
+       <bool>false</bool>
+      </property>
+      <item>
+       <property name="text">
+        <string>Off</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>On</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QLabel" name="hourLabel_5">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>430</y>
+        <width>71</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLabel {
+font-size:20px;
+border:2px solid black;
+padding:6px;
+}</string>
+      </property>
+      <property name="text">
+       <string>2</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_6">
+      <property name="geometry">
+       <rect>
+        <x>120</x>
+        <y>440</y>
+        <width>81</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLabel{
+font-size:20px;
+}</string>
+      </property>
+      <property name="text">
+       <string>hours</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="startButton_5">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>500</y>
+        <width>101</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton{
+font-size:20px;
+padding:5px;
+}</string>
+      </property>
+      <property name="text">
+       <string>START</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="goBackButton_5">
+      <property name="geometry">
+       <rect>
+        <x>120</x>
+        <y>500</y>
+        <width>101</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton{
+font-size:20px;
+padding:5px;
+}</string>
+      </property>
+      <property name="text">
+       <string>GO BACK</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="nonStopPage">
+     <widget class="QLabel" name="title_6">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>241</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLabel {
+font-size:20px;
+font-weight:bold;
+}</string>
+      </property>
+      <property name="text">
+       <string>NonStop 3h/3kg </string>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="textEdit_6">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>40</y>
+        <width>231</width>
+        <height>171</height>
+       </rect>
+      </property>
+      <property name="html">
+       <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+hr { height: 1px; border-width: 0; }
+li.unchecked::marker { content: &quot;\2610&quot;; }
+li.checked::marker { content: &quot;\2612&quot;; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Load Capacity:&lt;/span&gt; Up to &lt;span style=&quot; font-weight:700;&quot;&gt;3 kg&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Water Temperature:&lt;/span&gt; &lt;span style=&quot; font-weight:700;&quot;&gt;30°C – 60°C&lt;/span&gt; (adjustable)&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Spin Speed:&lt;/span&gt; &lt;span style=&quot; font-weight:700;&quot;&gt;800 – 1200 RPM&lt;/span&gt; (adjustable)&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Cycle Duration:&lt;/span&gt; &lt;span style=&quot; font-weight:700;&quot;&gt;~3 hours&lt;/span&gt; (fixed duration for both washing &amp;amp; drying)&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Purpose:&lt;/span&gt; Designed for &lt;span style=&quot; font-weight:700;&quot;&gt;small loads&lt;/span&gt; that need to be &lt;span style=&quot; font-weight:700;&quot;&gt;washed and dried quickly&lt;/span&gt;. Ideal for lightly soiled everyday clothes when you need them ready in a few hours. No need to transfer laundry between wash and dry cycles—it's fully automatic and continuous.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="tempLabel_6">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>220</y>
+        <width>131</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLabel{
+font-size:20px;
+}</string>
+      </property>
+      <property name="text">
+       <string>Temperature:</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="temperatureBox_6">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>220</y>
+        <width>91</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QComboBox{
+font-size:15px;
+}</string>
+      </property>
+      <property name="editable">
+       <bool>false</bool>
+      </property>
+      <item>
+       <property name="text">
+        <string>30°C</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>40°C</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>60°C</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QLabel" name="spinLabel_6">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>260</y>
+        <width>61</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLabel{
+font-size:20px;
+}</string>
+      </property>
+      <property name="text">
+       <string>Spin:</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="spinBox_6">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>260</y>
+        <width>91</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QComboBox{
+font-size:15px;
+}</string>
+      </property>
+      <property name="editable">
+       <bool>false</bool>
+      </property>
+      <item>
+       <property name="text">
+        <string>800RPM</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>1000RPM</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>1200RPM</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QLabel" name="rinseLabel_6">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>310</y>
+        <width>131</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLabel{
+font-size:20px;
+}</string>
+      </property>
+      <property name="text">
+       <string>Drying Level</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="dryBox">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>310</y>
+        <width>91</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QComboBox{
+font-size:15px;
+}</string>
+      </property>
+      <property name="editable">
+       <bool>false</bool>
+      </property>
+      <item>
+       <property name="text">
+        <string>Iron Dry</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Cupboard Dry</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Extra dry</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string/>
+       </property>
+      </item>
+     </widget>
+     <widget class="QLabel" name="ecomodeLabel_7">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>350</y>
+        <width>131</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLabel{
+font-size:20px;
+}</string>
+      </property>
+      <property name="text">
+       <string>Eco Mode:</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="ecomodeBox_7">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>350</y>
+        <width>91</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QComboBox{
+font-size:15px;
+}</string>
+      </property>
+      <property name="editable">
+       <bool>false</bool>
+      </property>
+      <item>
+       <property name="text">
+        <string>Off</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>On</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QLabel" name="hourLabel_6">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>400</y>
+        <width>71</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLabel {
+font-size:20px;
+border:2px solid black;
+padding:6px;
+}</string>
+      </property>
+      <property name="text">
+       <string>3</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_7">
+      <property name="geometry">
+       <rect>
+        <x>110</x>
+        <y>410</y>
+        <width>81</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLabel{
+font-size:20px;
+}</string>
+      </property>
+      <property name="text">
+       <string>hours</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="startButton_6">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>490</y>
+        <width>101</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton{
+font-size:20px;
+padding:5px;
+}</string>
+      </property>
+      <property name="text">
+       <string>START</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="goBackButton_6">
+      <property name="geometry">
+       <rect>
+        <x>120</x>
+        <y>490</y>
+        <width>101</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton{
+font-size:20px;
+padding:5px;
+}</string>
+      </property>
+      <property name="text">
+       <string>GO BACK</string>
       </property>
      </widget>
     </widget>

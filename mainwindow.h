@@ -60,6 +60,60 @@ private slots:
     void on_ecomodeBox_currentTextChanged(const QString &arg1);
     float calculateEndtime();
 
+    void on_temperatureBox_2_currentTextChanged(const QString &arg1);
+
+    void on_spinBox_2_currentTextChanged(const QString &arg1);
+
+    void on_rinseBox_2_currentTextChanged(const QString &arg1);
+
+    void on_ecomodeBox_2_currentTextChanged(const QString &arg1);
+
+    void on_startButton_2_clicked();
+
+    void on_goBackButton_2_clicked();
+
+    void on_temperatureBox_3_currentTextChanged(const QString &arg1);
+
+    void on_spinBox_3_currentTextChanged(const QString &arg1);
+
+    void on_rinseBox_3_currentTextChanged(const QString &arg1);
+
+    void on_ecomodeBox_3_currentTextChanged(const QString &arg1);
+
+    void on_startButton_3_clicked();
+
+    void on_goBackButton_3_clicked();
+
+    void on_temperatureBox_4_currentTextChanged(const QString &arg1);
+
+    void on_spinBox_4_currentTextChanged(const QString &arg1);
+
+    void on_rinseBox_4_currentTextChanged(const QString &arg1);
+
+    void on_ecomodeBox_4_currentTextChanged(const QString &arg1);
+
+    void on_startButton_4_clicked();
+
+    void on_goBackButton_4_clicked();
+
+    void on_temperatureBox_5_currentTextChanged(const QString &arg1);
+
+    void on_spinBox_5_currentTextChanged(const QString &arg1);
+
+    void on_rinseBox_5_currentTextChanged(const QString &arg1);
+
+    void on_ecomodeBox_5_currentTextChanged(const QString &arg1);
+
+    void on_steamBox_currentTextChanged(const QString &arg1);
+
+    void on_startButton_5_clicked();
+
+    void on_goBackButton_5_clicked();
+
+    void on_temperatureBox_6_currentTextChanged(const QString &arg1);
+
+    void on_spinBox_6_currentTextChanged(const QString &arg1);
+
 private:
     Ui::MainWindow *ui;
 
@@ -77,6 +131,7 @@ private:
     int spinTime = 0;
     int ecoTime = 0;
     int rinseTime = 0;
+    int steamTime = 0;
 
     float endTime = 2.0f;
 

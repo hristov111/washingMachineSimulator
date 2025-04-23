@@ -1,0 +1,26 @@
+# Ignore build directory
+build/
+
+# Ignore Qt Creator user files
+*.pro.user
+*.pro.user.*
+CMakeLists.txt.user
+
+# Ignore CMake-generated files
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+
+# Ignore object and binary files
+*.o
+*.obj
+*.exe
+*.dll
+*.so
+*.a
+*.lib
+
+# Ignore backup/swap files
+*~
+*.swp
