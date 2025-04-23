@@ -7,6 +7,7 @@
 #include <QVector3D>
 #include <Qt3DExtras/Qt3DWindow>
 #include <Qt3DExtras/QPhongMaterial>
+#include <qpushbutton.h>
 
 #include "myhashtable.h"
 
@@ -32,7 +33,32 @@ public:
 private slots:
     void addFunc();
 
-    void on_pushButton_2_clicked();
+    void insertPowder_button();
+
+    void on_cottonsButton_clicked();
+
+    void on_cottonsEcoButton_clicked();
+
+    void on_syntheticsButton_clicked();
+
+    void on_woolSilkButton_clicked();
+
+    void on_antiAllergyButton_clicked();
+
+    void on_nonStopButton_clicked();
+
+    void on_antiCreaseButton_clicked();
+
+    void on_refreshButton_clicked();
+
+    void on_temperatureBox_currentTextChanged(const QString &arg1);
+
+    void on_spinBox_currentTextChanged(const QString &arg1);
+
+    void on_rinseBox_currentTextChanged(const QString &arg1);
+
+    void on_ecomodeBox_currentTextChanged(const QString &arg1);
+    float calculateEndtime();
 
 private:
     Ui::MainWindow *ui;
@@ -44,6 +70,17 @@ private:
     MyHashtable<QString,Qt3DExtras::QPhongMaterial*> *colorTable= nullptr;
 
     QWidget *container = nullptr;
+
+
+    QString currentMode = "";
+    int tempTime = 0;
+    int spinTime = 0;
+    int ecoTime = 0;
+    int rinseTime = 0;
+
+    float endTime = 2.0f;
+
+    // buttons
 
 protected:
     void resizeEvent(QResizeEvent *event) override;

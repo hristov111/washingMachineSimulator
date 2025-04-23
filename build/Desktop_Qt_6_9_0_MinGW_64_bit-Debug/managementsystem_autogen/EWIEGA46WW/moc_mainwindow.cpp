@@ -41,14 +41,62 @@ template <> constexpr inline auto MainWindow::qt_create_metaobjectdata<qt_meta_t
         "MainWindow",
         "addFunc",
         "",
-        "on_pushButton_2_clicked"
+        "insertPowder_button",
+        "on_cottonsButton_clicked",
+        "on_cottonsEcoButton_clicked",
+        "on_syntheticsButton_clicked",
+        "on_woolSilkButton_clicked",
+        "on_antiAllergyButton_clicked",
+        "on_nonStopButton_clicked",
+        "on_antiCreaseButton_clicked",
+        "on_refreshButton_clicked",
+        "on_temperatureBox_currentTextChanged",
+        "arg1",
+        "on_spinBox_currentTextChanged",
+        "on_rinseBox_currentTextChanged",
+        "on_ecomodeBox_currentTextChanged",
+        "calculateEndtime"
     };
 
     QtMocHelpers::UintData qt_methods {
         // Slot 'addFunc'
         QtMocHelpers::SlotData<void()>(1, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'on_pushButton_2_clicked'
+        // Slot 'insertPowder_button'
         QtMocHelpers::SlotData<void()>(3, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_cottonsButton_clicked'
+        QtMocHelpers::SlotData<void()>(4, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_cottonsEcoButton_clicked'
+        QtMocHelpers::SlotData<void()>(5, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_syntheticsButton_clicked'
+        QtMocHelpers::SlotData<void()>(6, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_woolSilkButton_clicked'
+        QtMocHelpers::SlotData<void()>(7, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_antiAllergyButton_clicked'
+        QtMocHelpers::SlotData<void()>(8, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_nonStopButton_clicked'
+        QtMocHelpers::SlotData<void()>(9, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_antiCreaseButton_clicked'
+        QtMocHelpers::SlotData<void()>(10, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_refreshButton_clicked'
+        QtMocHelpers::SlotData<void()>(11, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_temperatureBox_currentTextChanged'
+        QtMocHelpers::SlotData<void(const QString &)>(12, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::QString, 13 },
+        }}),
+        // Slot 'on_spinBox_currentTextChanged'
+        QtMocHelpers::SlotData<void(const QString &)>(14, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::QString, 13 },
+        }}),
+        // Slot 'on_rinseBox_currentTextChanged'
+        QtMocHelpers::SlotData<void(const QString &)>(15, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::QString, 13 },
+        }}),
+        // Slot 'on_ecomodeBox_currentTextChanged'
+        QtMocHelpers::SlotData<void(const QString &)>(16, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::QString, 13 },
+        }}),
+        // Slot 'calculateEndtime'
+        QtMocHelpers::SlotData<float()>(17, 2, QMC::AccessPrivate, QMetaType::Float),
     };
     QtMocHelpers::UintData qt_properties {
     };
@@ -73,11 +121,24 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
     if (_c == QMetaObject::InvokeMetaMethod) {
         switch (_id) {
         case 0: _t->addFunc(); break;
-        case 1: _t->on_pushButton_2_clicked(); break;
+        case 1: _t->insertPowder_button(); break;
+        case 2: _t->on_cottonsButton_clicked(); break;
+        case 3: _t->on_cottonsEcoButton_clicked(); break;
+        case 4: _t->on_syntheticsButton_clicked(); break;
+        case 5: _t->on_woolSilkButton_clicked(); break;
+        case 6: _t->on_antiAllergyButton_clicked(); break;
+        case 7: _t->on_nonStopButton_clicked(); break;
+        case 8: _t->on_antiCreaseButton_clicked(); break;
+        case 9: _t->on_refreshButton_clicked(); break;
+        case 10: _t->on_temperatureBox_currentTextChanged((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
+        case 11: _t->on_spinBox_currentTextChanged((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
+        case 12: _t->on_rinseBox_currentTextChanged((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
+        case 13: _t->on_ecomodeBox_currentTextChanged((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
+        case 14: { float _r = _t->calculateEndtime();
+            if (_a[0]) *reinterpret_cast< float*>(_a[0]) = std::move(_r); }  break;
         default: ;
         }
     }
-    (void)_a;
 }
 
 const QMetaObject *MainWindow::metaObject() const
@@ -99,14 +160,14 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 2)
+        if (_id < 15)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 2;
+        _id -= 15;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 2)
+        if (_id < 15)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 2;
+        _id -= 15;
     }
     return _id;
 }

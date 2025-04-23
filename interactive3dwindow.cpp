@@ -17,11 +17,6 @@ void Interactive3DWindow::setTargetTransform(Qt3DCore::QTransform *transform){
     targetTransform = transform;
 }
 
-void makeButtonRed(std::optional<Qt3DExtras::QPhongMaterial*> res){
-    if(res.has_value()){
-        res.value()->setDiffuse(QColor(Qt::red));
-    }
-}
 
 void Interactive3DWindow::mousePressEvent(QMouseEvent *event){
     if(event->buttons() == Qt::LeftButton){

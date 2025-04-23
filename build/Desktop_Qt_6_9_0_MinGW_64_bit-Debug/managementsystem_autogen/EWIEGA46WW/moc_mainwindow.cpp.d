@@ -224,7 +224,9 @@ C:/Users/vboxuser/Documents/managementsystem/build/Desktop_Qt_6_9_0_MinGW_64_bit
   C:/Qt/6.9.0/mingw_64/include/QtOpenGL/qtopenglexports.h \
   C:/Qt/6.9.0/mingw_64/include/QtOpenGL/qtopenglglobal.h \
   C:/Qt/6.9.0/mingw_64/include/QtWidgets/QMainWindow \
+  C:/Qt/6.9.0/mingw_64/include/QtWidgets/qabstractbutton.h \
   C:/Qt/6.9.0/mingw_64/include/QtWidgets/qmainwindow.h \
+  C:/Qt/6.9.0/mingw_64/include/QtWidgets/qpushbutton.h \
   C:/Qt/6.9.0/mingw_64/include/QtWidgets/qsizepolicy.h \
   C:/Qt/6.9.0/mingw_64/include/QtWidgets/qtabwidget.h \
   C:/Qt/6.9.0/mingw_64/include/QtWidgets/qtwidgets-config.h \
