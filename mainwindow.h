@@ -8,6 +8,7 @@
 #include <Qt3DExtras/Qt3DWindow>
 #include <Qt3DExtras/QPhongMaterial>
 #include <qpushbutton.h>
+#include <QLabel>
 
 #include "myhashtable.h"
 
@@ -51,68 +52,120 @@ private slots:
 
     void on_refreshButton_clicked();
 
-    void on_temperatureBox_currentTextChanged(const QString &arg1);
+    void on_cottonsTempBox_currentTextChanged(const QString &arg1);
 
     void on_spinBox_currentTextChanged(const QString &arg1);
 
-    void on_rinseBox_currentTextChanged(const QString &arg1);
+    void on_cottonsRinseBox_currentTextChanged(const QString &arg1);
 
-    void on_ecomodeBox_currentTextChanged(const QString &arg1);
+    void on_cottonsEcoModeBox_currentTextChanged(const QString &arg1);
     float calculateEndtime();
 
-    void on_temperatureBox_2_currentTextChanged(const QString &arg1);
+    void on_cottonsEcoTempBox_currentTextChanged(const QString &arg1);
 
-    void on_spinBox_2_currentTextChanged(const QString &arg1);
+    void on_cottonsEcoSpinBox_currentTextChanged(const QString &arg1);
 
-    void on_rinseBox_2_currentTextChanged(const QString &arg1);
+    void on_cottonsEcoRinseBox_currentTextChanged(const QString &arg1);
 
-    void on_ecomodeBox_2_currentTextChanged(const QString &arg1);
+    void on_cottonsEcoEcoModeBox_currentTextChanged(const QString &arg1);
 
-    void on_startButton_2_clicked();
+    void on_cottonsEcoStartButt_clicked();
 
-    void on_goBackButton_2_clicked();
 
-    void on_temperatureBox_3_currentTextChanged(const QString &arg1);
+    void on_synthTempBox_currentTextChanged(const QString &arg1);
 
-    void on_spinBox_3_currentTextChanged(const QString &arg1);
+    void on_synthSpinBox_currentTextChanged(const QString &arg1);
 
-    void on_rinseBox_3_currentTextChanged(const QString &arg1);
+    void on_synthRinseBox_currentTextChanged(const QString &arg1);
 
-    void on_ecomodeBox_3_currentTextChanged(const QString &arg1);
+    void on_synthEcoModeBox_currentTextChanged(const QString &arg1);
 
-    void on_startButton_3_clicked();
+    void on_synthStartButt_clicked();
 
-    void on_goBackButton_3_clicked();
 
-    void on_temperatureBox_4_currentTextChanged(const QString &arg1);
+    void on_woolSilkTempBox_currentTextChanged(const QString &arg1);
 
-    void on_spinBox_4_currentTextChanged(const QString &arg1);
+    void on_woolSilkSpinBox_currentTextChanged(const QString &arg1);
 
-    void on_rinseBox_4_currentTextChanged(const QString &arg1);
+    void on_woolSilkRinseBox_currentTextChanged(const QString &arg1);
 
-    void on_ecomodeBox_4_currentTextChanged(const QString &arg1);
+    void on_woolSilkEcoModeBox_currentTextChanged(const QString &arg1);
 
-    void on_startButton_4_clicked();
+    void on_woolSilkStartButt_clicked();
 
-    void on_goBackButton_4_clicked();
 
-    void on_temperatureBox_5_currentTextChanged(const QString &arg1);
+    void on_antiAllergyTempBox_currentTextChanged(const QString &arg1);
 
-    void on_spinBox_5_currentTextChanged(const QString &arg1);
+    void on_antiAllergySpinBox_currentTextChanged(const QString &arg1);
 
-    void on_rinseBox_5_currentTextChanged(const QString &arg1);
+    void on_antiAllergyRinseBox_currentTextChanged(const QString &arg1);
 
-    void on_ecomodeBox_5_currentTextChanged(const QString &arg1);
+    void on_antiAllergyEcoModeBox_currentTextChanged(const QString &arg1);
 
-    void on_steamBox_currentTextChanged(const QString &arg1);
+    void on_antiAllergySteamBox_currentTextChanged(const QString &arg1);
 
-    void on_startButton_5_clicked();
+    void on_antiAllergyStartButt_clicked();
 
-    void on_goBackButton_5_clicked();
 
-    void on_temperatureBox_6_currentTextChanged(const QString &arg1);
+    void on_nonStopTempBox_currentTextChanged(const QString &arg1);
 
-    void on_spinBox_6_currentTextChanged(const QString &arg1);
+    void on_nonStopSpinBox_currentTextChanged(const QString &arg1);
+
+    void on_nonStopDryBox_currentTextChanged(const QString &arg1);
+
+    void on_nonStopEcoModeBox_currentTextChanged(const QString &arg1);
+
+    void on_nonStopStartButt_clicked();
+
+
+    void on_antiCreaseTempBox_currentTextChanged(const QString &arg1);
+
+    void on_antiCreaseSpinBox_currentTextChanged(const QString &arg1);
+
+    void on_antiCreaseExtraBox_currentTextChanged(const QString &arg1);
+
+    void on_antiCreaseEcoModeBox_currentTextChanged(const QString &arg1);
+
+    void on_antiCreaseStartButt_clicked();
+
+
+    void on_refreshTempBox_currentTextChanged(const QString &arg1);
+
+    void on_refreshSpinBox_currentTextChanged(const QString &arg1);
+
+    void on_refreshSteamBox_currentTextChanged(const QString &arg1);
+
+    void on_refreshEcoModeBox_currentTextChanged(const QString &arg1);
+
+    void on_refreshStartButt_clicked();
+
+
+    void on_cottonsStartButt_clicked();
+
+
+    void backToPrograms(std::function<void()> callback);
+
+    void on_cottonsEcoBackButton_clicked();
+
+    void on_cottonsBackButton_clicked();
+
+    void on_syntheticsBackButton_clicked();
+
+    void on_woolSilkBackButton_clicked();
+
+    void on_antiAllergyBackButton_clicked();
+
+    void on_nonStopBackButton_clicked();
+
+    void on_antiCreaseBackButton_clicked();
+
+    void on_refreshBackButt_clicked();
+
+    // water filling things
+    void startSlider(QLabel* label, QLabel* holderLabel, QMovie * spinnerMovie,QTimer* timer);
+
+    void moveWaterFillingSlider();
+    void moveHeatingWaterSlider();
 
 private:
     Ui::MainWindow *ui;
@@ -126,14 +179,25 @@ private:
     QWidget *container = nullptr;
 
 
-    QString currentMode = "";
+
     int tempTime = 0;
     int spinTime = 0;
     int ecoTime = 0;
     int rinseTime = 0;
     int steamTime = 0;
+    int dryTime = 0;
+    int anticreaseTime = 0;
 
     float endTime = 2.0f;
+
+    // timers for sliders, labels,movie
+    QTimer* waterFillingSliderTimer = nullptr;
+    QLabel * waterFillingLabel = nullptr;
+    QMovie * waterFillingSpinnerMovie = nullptr;
+
+    QTimer* heatingWaterSliderTimer = nullptr;
+    QLabel* heatingWaterLabel = nullptr;
+    QMovie* heatingWaterSpinnerMovie = nullptr;
 
     // buttons
 
