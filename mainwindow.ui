@@ -3394,13 +3394,104 @@ font-size:15px;
       <property name="geometry">
        <rect>
         <x>200</x>
-        <y>140</y>
+        <y>150</y>
         <width>31</width>
         <height>16</height>
        </rect>
       </property>
       <property name="text">
        <string>40°C</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="minRinseCycle">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>300</y>
+        <width>21</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>0</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="maxRinseCycle">
+      <property name="geometry">
+       <rect>
+        <x>220</x>
+        <y>300</y>
+        <width>16</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>3</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="minSpinSlider200">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>390</y>
+        <width>49</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>200</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="maxSpinSlider1600">
+      <property name="geometry">
+       <rect>
+        <x>200</x>
+        <y>390</y>
+        <width>31</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>1600</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="minSpinSlider800">
+      <property name="geometry">
+       <rect>
+        <x>80</x>
+        <y>390</y>
+        <width>49</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>800</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="minSpinSlider1200">
+      <property name="geometry">
+       <rect>
+        <x>150</x>
+        <y>390</y>
+        <width>31</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>1200</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>360</y>
+        <width>31</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>RPM</string>
       </property>
      </widget>
     </widget>

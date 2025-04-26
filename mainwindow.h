@@ -9,6 +9,9 @@
 #include <Qt3DExtras/QPhongMaterial>
 #include <qpushbutton.h>
 #include <QLabel>
+#include <QSlider>
+#include <functional>
+
 
 #include "myhashtable.h"
 
@@ -162,10 +165,23 @@ private slots:
     void on_refreshBackButt_clicked();
 
     // water filling things
-    void startSlider(QLabel* label, QLabel* holderLabel, QMovie * spinnerMovie,QTimer* timer);
+    void startSlider(QLabel*& label, QLabel* holderLabel, QMovie *& spinnerMovie,QTimer* timer,std::function<void()>callback = []() {});
 
     void moveWaterFillingSlider();
     void moveHeatingWaterSlider();
+    void moveWashCycleSlider();
+    void moveDrainWaterSlider();
+    void moveRinseWaterSlider();
+    void moveSpinWaterSlider();
+
+    void prepareHeatingFunction();
+    void prepareDrainingFunction();
+    void prepareSpinFunction();
+
+    void calculateIncrementationForSliders(QSlider* slider,double time);
+    void calculateDecrementationForSliders(QSlider* slider, double time);
+
+    void calculateTimedifference(double defaultTime, double& timeslider, int numberOfPrograms,int delitel ,int time = 0);
 
 private:
     Ui::MainWindow *ui;
@@ -179,7 +195,31 @@ private:
     QWidget *container = nullptr;
 
 
+    // times for sliders fo how long to be filling depending on user options
+    double fillWaterTimeSlider;
+    double heatWaterTimeSlider;
+    double washCycleTimeSlider;
+    double drainWaterTimeSlider;
+    double rinseCycleTimeSlider;
+    double spinCycleTimeSlider;
+    double steamTimeSlider;
+    double preWashTimeSlider;
+    double antiCreaseTimeSlider;
 
+    int currentValueSliderForIncrement;
+    int currentValueSliderForDecrement;
+    int maxValueSlider;
+    int minValueSlider;
+    int stepsForSlider;
+    int incrementStepSlider;
+    int decrementStepSlider;
+
+    // for cottons steps
+    /*FillWater → HeatWater → WashCycle → DrainWater → RinseCycle → DrainWater → SpinCycle → Complete*/
+    int cottonsStep = 0;
+
+
+    // variables useful for calculations of the endtime
     int tempTime = 0;
     int spinTime = 0;
     int ecoTime = 0;
@@ -195,10 +235,31 @@ private:
     QLabel * waterFillingLabel = nullptr;
     QMovie * waterFillingSpinnerMovie = nullptr;
 
+
+    // for heating
     QTimer* heatingWaterSliderTimer = nullptr;
     QLabel* heatingWaterLabel = nullptr;
     QMovie* heatingWaterSpinnerMovie = nullptr;
 
+    // for washCycle
+    QTimer* washWaterSliderTimer = nullptr;
+    QLabel* washWaterLabel = nullptr;
+    QMovie* washWaterSpinnerMovie = nullptr;
+
+    // for draining water cycle
+    QTimer* drainWaterSliderTimer = nullptr;
+    QLabel* drainWaterLabel = nullptr;
+    QMovie* drainWaterSpinnerMovie = nullptr;
+
+    // for rinse water cycle
+    QTimer* rinseWaterSliderTimer = nullptr;
+    QLabel* rinseWaterLabel = nullptr;
+    QMovie* rinseWaterSpinnerMovie = nullptr;
+
+    // for spin water cycle
+    QTimer* spinWaterSliderTimer = nullptr;
+    QLabel* spinWaterLabel = nullptr;
+    QMovie* spinWaterSpinnerMovie = nullptr;
     // buttons
 
 protected:
