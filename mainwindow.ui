@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1198</width>
-    <height>615</height>
+    <width>1197</width>
+    <height>606</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -109,7 +109,7 @@ font-size:20px;
      </rect>
     </property>
     <property name="currentIndex">
-     <number>10</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="insertPowderPage">
      <widget class="QPushButton" name="pushButton">
@@ -2922,7 +2922,7 @@ padding:5px;
      <widget class="QLabel" name="startProgramLabel">
       <property name="geometry">
        <rect>
-        <x>40</x>
+        <x>0</x>
         <y>10</y>
         <width>151</width>
         <height>41</height>
@@ -3458,9 +3458,9 @@ font-size:15px;
      <widget class="QLabel" name="minSpinSlider800">
       <property name="geometry">
        <rect>
-        <x>80</x>
+        <x>90</x>
         <y>390</y>
-        <width>49</width>
+        <width>31</width>
         <height>16</height>
        </rect>
       </property>
@@ -3494,6 +3494,26 @@ font-size:15px;
        <string>RPM</string>
       </property>
      </widget>
+     <widget class="QLabel" name="programStartedHourLabel">
+      <property name="geometry">
+       <rect>
+        <x>160</x>
+        <y>10</y>
+        <width>71</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLabel {
+font-size:20px;
+border:2px solid black;
+padding:6px;
+}</string>
+      </property>
+      <property name="text">
+       <string>0.20</string>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="page"/>
    </widget>
@@ -3503,7 +3523,7 @@ font-size:15px;
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1198</width>
+     <width>1197</width>
      <height>22</height>
     </rect>
    </property>

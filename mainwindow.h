@@ -11,7 +11,7 @@
 #include <QLabel>
 #include <QSlider>
 #include <functional>
-
+#include <QComboBox>
 
 #include "myhashtable.h"
 
@@ -165,7 +165,7 @@ private slots:
     void on_refreshBackButt_clicked();
 
     // water filling things
-    void startSlider(QLabel*& label, QLabel* holderLabel, QMovie *& spinnerMovie,QTimer* timer,std::function<void()>callback = []() {});
+    void startSlider(QLabel*& label, QLabel* holderLabel, QMovie *& spinnerMovie,QTimer* timer,QElapsedTimer* elapsedTimer,std::function<void()>callback = []() {});
 
     void moveWaterFillingSlider();
     void moveHeatingWaterSlider();
@@ -173,15 +173,34 @@ private slots:
     void moveDrainWaterSlider();
     void moveRinseWaterSlider();
     void moveSpinWaterSlider();
+    void moveSteamWaterSlider();
 
     void prepareHeatingFunction();
     void prepareDrainingFunction();
     void prepareSpinFunction();
+    void prepareFillingWaterFunction();
+    void prepareWashWaterFunction();
+    void prepareRinseWaterFunction();
+    void prepareSteamWaterFunction();
 
-    void calculateIncrementationForSliders(QSlider* slider,double time);
+    void calculateIncrementationForSliders(QSlider* slider,double time,double& current,int& max,int& steps, double&increment, int targetValue = 0);
     void calculateDecrementationForSliders(QSlider* slider, double time);
 
-    void calculateTimedifference(double defaultTime, double& timeslider, int numberOfPrograms,int delitel ,int time = 0);
+    void calculateTimedifference(int defaultTime, double& timeslider, int numberOfPrograms ,int time = 0);
+
+    int convertMinutesToCompressedSeconds(int minutes, double compressionFactor);
+    QString convertToNormalTime(int seconds, double compressionFactor);
+    int convertAndCompressTime(double hourFloat, double compressionFactor);
+
+    QString formatSecondsToHourMinute(int seconds);
+
+    void setSliderAttributesSuccess(QTimer*& timer, QMovie*& movie, QLabel*& label,QLabel*& holderLabel);
+
+    void setProgramLabelTime(double time);
+
+    void distributeSecondsForCottons(double& mainSlider);
+
+    void setTempSliderMinMax(QComboBox*& box);
 
 private:
     Ui::MainWindow *ui;
@@ -206,17 +225,29 @@ private:
     double preWashTimeSlider;
     double antiCreaseTimeSlider;
 
-    int currentValueSliderForIncrement;
-    int currentValueSliderForDecrement;
+    double fillingWaterCurrentValueForIncrement;
+    double currentValueSliderForIncrement;
+    double currentValueSliderForDecrement;
+
+    int maxfillingWaterValueSlider;
     int maxValueSlider;
     int minValueSlider;
+
+    int fillingWaterStepsForSlider;
     int stepsForSlider;
-    int incrementStepSlider;
-    int decrementStepSlider;
+
+    double incrementStepSlider;
+    double fillingWaterincrementStepSlider;
+    double decrementStepSlider;
 
     // for cottons steps
     /*FillWater → HeatWater → WashCycle → DrainWater → RinseCycle → DrainWater → SpinCycle → Complete*/
     int cottonsStep = 0;
+    int synthStep = 0;
+    int woolsilkStep = 0;
+    int antiAllergyStep = 0;
+    int nonstopStep = 0;
+    int antiCrease = 0;
 
 
     // variables useful for calculations of the endtime
@@ -231,36 +262,55 @@ private:
     float endTime = 2.0f;
 
     // timers for sliders, labels,movie
+    bool fillingWaterisIncrementing = true;
     QTimer* waterFillingSliderTimer = nullptr;
+    QElapsedTimer *waterFillingElapsedTimer = nullptr;
     QLabel * waterFillingLabel = nullptr;
     QMovie * waterFillingSpinnerMovie = nullptr;
 
 
     // for heating
+    bool heatingWaterIsIncrementing = true;
     QTimer* heatingWaterSliderTimer = nullptr;
+    QElapsedTimer *heatingWaterElapsedTimer = nullptr;
     QLabel* heatingWaterLabel = nullptr;
     QMovie* heatingWaterSpinnerMovie = nullptr;
+    QComboBox* currentBox = nullptr;
 
     // for washCycle
+    bool washCycleIsIncrementing = true;
     QTimer* washWaterSliderTimer = nullptr;
+    QElapsedTimer *washWaterElapsedTimer = nullptr;
     QLabel* washWaterLabel = nullptr;
     QMovie* washWaterSpinnerMovie = nullptr;
 
     // for draining water cycle
+    bool drainingIsIncrementing = true;
     QTimer* drainWaterSliderTimer = nullptr;
+    QElapsedTimer *drainWaterElapsedTimer = nullptr;
     QLabel* drainWaterLabel = nullptr;
     QMovie* drainWaterSpinnerMovie = nullptr;
 
     // for rinse water cycle
+    bool rinseIsIncrementing = true;
     QTimer* rinseWaterSliderTimer = nullptr;
+    QElapsedTimer *rinseWaterElapsedTimer = nullptr;
     QLabel* rinseWaterLabel = nullptr;
     QMovie* rinseWaterSpinnerMovie = nullptr;
 
     // for spin water cycle
+    bool spinIsIncrementing = true;
     QTimer* spinWaterSliderTimer = nullptr;
+    QElapsedTimer *spinWaterElapsedTimer = nullptr;
     QLabel* spinWaterLabel = nullptr;
     QMovie* spinWaterSpinnerMovie = nullptr;
-    // buttons
+
+
+    // for steam
+    QTimer* steamWaterSliderTimer = nullptr;
+    QElapsedTimer * steamWaterElapsedTimer = nullptr;
+    QLabel * steamWaterLabel = nullptr;
+    QMovie* steamWaterSpinnerMovie = nullptr;
 
 protected:
     void resizeEvent(QResizeEvent *event) override;
