@@ -1,48 +1,204 @@
 #include "scenemodifier.h"
+
 #include <Qt3DCore/QEntity>
 #include <Qt3DExtras/QExtrudedTextMesh>
 #include <Qt3DCore/QTransform>
-#include <Qt3DExtras/QSphereMesh>
-#include <Qt3DRender/QObjectPicker>
-#include <Qt3DRender/QPickEvent>
+#include <Qt3DExtras/QCuboidMesh>
+#include <Qt3DExtras/QPhongMaterial>
+#include <QFont>
+#include <QQuaternion>
+#include <QDebug>
+
+// ————————————————————————————————————————————————————————————————
+// Text‐label methods (unchanged)
+// ————————————————————————————————————————————————————————————————
 
 SceneModifier::SceneModifier(Qt3DCore::QEntity *rootEntity)
-    :m_rootEntity(rootEntity){
+    : m_rootEntity(rootEntity)
+{}
 
-}
-
-void SceneModifier::add3DLabel(const QString &text, const QVector3D &position, const QColor &color ,  MyHashtable<QString,Qt3DExtras::QPhongMaterial*> *table){
-
-
-    // Vissible labelentity
-    auto *labelEntity = new Qt3DCore::QEntity(m_rootEntity);
+void SceneModifier::add3DLabel(const QString &text,
+                               const QVector3D &position,
+                               const QColor   &color,
+                               MyHashtable<QString,Qt3DExtras::QPhongMaterial*> *table)
+{
+    auto *ent = new Qt3DCore::QEntity(m_rootEntity);
 
     auto *mesh = new Qt3DExtras::QExtrudedTextMesh();
-    QFont font("Arial", 20, QFont::Bold);
-    mesh->setFont(font);
+    mesh->setFont(QFont("Arial", 20, QFont::Bold));
     mesh->setText(text);
     mesh->setDepth(0.1f);
 
-    auto *material = new Qt3DExtras::QPhongMaterial();
-    material->setDiffuse(color);
+    auto *mat = new Qt3DExtras::QPhongMaterial();
+    mat->setDiffuse(color);
 
-    auto *transform = new Qt3DCore::QTransform();
-    transform->setTranslation(position);
-    transform->setScale(0.1f);
+    auto *xf = new Qt3DCore::QTransform();
+    xf->setTranslation(position);
+    xf->setScale(0.1f);
 
-    labelTransforms.append(transform);
+    ent->addComponent(mesh);
+    ent->addComponent(mat);
+    ent->addComponent(xf);
 
-    // add the transfrom to the table
-    table->insert(text, material);
-
-
-    labelEntity->addComponent(mesh);
-    labelEntity->addComponent(material);
-    labelEntity->addComponent(transform);
+    labelTransforms.append(xf);
+    if (table) table->insert(text, mat);
 }
 
-void SceneModifier::applyRotationToLabels(const QQuaternion &rotation){
-    for(auto *transform : labelTransforms){
-        transform->setRotation(rotation);
-    }
+void SceneModifier::applyRotationToLabels(const QQuaternion &rotation)
+{
+    // rotate text labels
+    for (auto *t : labelTransforms)
+        t->setRotation(rotation);
+
+    // rotate each bar group
+    for (auto *t : barTransforms)
+        t->setRotation(rotation);
+}
+
+
+// ————————————————————————————————————————————————————————————————
+// ProgressBarEntity implementation with a single groupTransform
+// ————————————————————————————————————————————————————————————————
+
+ProgressBarEntity::ProgressBarEntity(Qt3DCore::QEntity *parent,
+                                     const QVector3D &position,
+                                     const QColor   &color,
+                                     float initialLevel)
+    : Qt3DCore::QEntity(parent)
+    , groupTransform(new Qt3DCore::QTransform())
+{
+    // 0) attach a single group‐transform for the entire bar
+    this->addComponent(groupTransform);
+    groupTransform->setTranslation(position);
+
+    // 1) Background bar (2×0.2)
+    bgEntity   = new Qt3DCore::QEntity(this);
+    bgMesh     = new Qt3DExtras::QCuboidMesh();
+    bgMesh->setXExtent(2.0f);
+    bgMesh->setYExtent(0.2f);
+    bgMesh->setZExtent(0.2f);
+
+    bgMaterial = new Qt3DExtras::QPhongMaterial();
+    bgMaterial->setDiffuse(QColor(100,100,100));
+
+    bgTransform = new Qt3DCore::QTransform();
+    // *relative* to group: sits 0.4 down under the text
+    bgTransform->setTranslation(QVector3D(0.0f, -0.4f, 0.0f));
+
+    bgEntity->addComponent(bgMesh);
+    bgEntity->addComponent(bgMaterial);
+    bgEntity->addComponent(bgTransform);
+
+    // 2) Fill bar (initially empty; grows in setLevel())
+    fillEntity   = new Qt3DCore::QEntity(this);
+    fillMesh     = new Qt3DExtras::QCuboidMesh();
+    fillMesh->setYExtent(0.15f);
+    fillMesh->setZExtent(0.2f);
+
+    fillMaterial = new Qt3DExtras::QPhongMaterial();
+    fillMaterial->setDiffuse(color);
+
+    fillTransform = new Qt3DCore::QTransform();
+    // anchor at the *left* edge of the bg (half of 2.0 = 1.0)
+    fillTransform->setTranslation(QVector3D(-1.0f, -0.4f, 0.01f));
+
+    fillEntity->addComponent(fillMesh);
+    fillEntity->addComponent(fillMaterial);
+    fillEntity->addComponent(fillTransform);
+
+    // initialize to the requested level
+    setLevel(initialLevel);
+}
+
+void ProgressBarEntity::setLevel(float level)
+{
+    // clamp to [0,1]
+    level = qBound(0.0f, level, 1.0f);
+
+    // full length = 2.0f * level
+    float fullLength = 2.0f * level;
+    fillMesh->setXExtent(fullLength);
+
+    // keep the *left* edge anchored at x = –1.0f in local space
+    QVector3D t = fillTransform->translation();
+    fillTransform->setTranslation({
+        -1.0f + fullLength * 0.5f,  // center‐of‐fill offset
+        t.y(),
+        t.z()
+    });
+}
+
+
+// ————————————————————————————————————————————————————————————————
+// SceneModifier: progress‐bar methods
+// ————————————————————————————————————————————————————————————————
+
+void SceneModifier::addProgressBars()
+{
+    if (!m_rootEntity) return;
+
+    // slide the whole group to the right of the machine,
+    // y=0 so centered horizontally
+    const QVector3D basePos(3.5f, 0.0f, 1.0f);
+
+    // WATER bar
+    waterTank = new ProgressBarEntity(m_rootEntity,
+                                     basePos,
+                                     QColor(67,133,244),
+                                     0.0f);
+    // only rotate the groupTransform
+    barTransforms << waterTank->groupTransform;
+    addBarLabel("Water Tank", basePos);
+
+    // DETERGENT (1 unit up)
+    QVector3D dpos = basePos + QVector3D(0, 1.0f, 0);
+    lintTrap = new ProgressBarEntity(m_rootEntity,
+                                         dpos,
+                                         QColor(244,180,67),
+                                         0.0f);
+    barTransforms << lintTrap->groupTransform;
+    addBarLabel("Lint-trap", dpos);
+
+    // SOFTENER (another 1 unit up)
+    QVector3D spos = dpos + QVector3D(0, 1.0f, 0);
+    detergantTray = new ProgressBarEntity(m_rootEntity,
+                                        spos,
+                                        QColor(123,201,111),
+                                        0.0f);
+    barTransforms << detergantTray->groupTransform;
+    addBarLabel("Detergant tray", spos);
+}
+
+void SceneModifier::updateProgressBars(float waterLevel,
+                                       float detergentLevel,
+                                       float softenerLevel)
+{
+    if (waterTank)     waterTank->setLevel(waterLevel);
+    if (lintTrap) lintTrap->setLevel(detergentLevel);
+    if (detergantTray)  detergantTray->setLevel(softenerLevel);
+}
+
+void SceneModifier::addBarLabel(const QString &text, const QVector3D &position)
+{
+    auto *ent = new Qt3DCore::QEntity(m_rootEntity);
+
+    auto *mesh = new Qt3DExtras::QExtrudedTextMesh();
+    mesh->setFont(QFont("Arial", 14, QFont::Bold));
+    mesh->setText(text);
+    mesh->setDepth(0.2f);
+
+    auto *mat = new Qt3DExtras::QPhongMaterial();
+    mat->setDiffuse(Qt::white);
+
+    auto *xf = new Qt3DCore::QTransform();
+    // place it just under the bar
+    xf->setTranslation(position + QVector3D(0.0f, -0.9f, 0.0f));
+    xf->setScale(0.12f);
+
+    ent->addComponent(mesh);
+    ent->addComponent(mat);
+    ent->addComponent(xf);
+
+    // rotate labels in sync too
+    barTransforms.append(xf);
 }

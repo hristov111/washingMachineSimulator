@@ -11,6 +11,24 @@
 #include <QLabel>
 
 #include "myhashtable.h"
+class SceneModifier;
+struct ProgramFill {
+    float waterTank;      // 0.0–1.0 fraction of full capacity
+    float lintTrap;       // 0.0–1.0
+    float detergentTray;  // 0.0–1.0
+    int   maxTankRuns;
+    int   maxLintRuns;
+    int   maxDetRuns;
+};
+
+extern int waterRuns;
+    extern int lintRuns;
+    extern int detRuns;
+
+// Then in your .cpp where you initialize:
+extern const QMap<QString,ProgramFill> programFills;
+extern float currentWaterTarget;
+extern QString currentProgram;
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -32,6 +50,7 @@ public:
 
 
 private slots:
+
     void addFunc();
 
     void insertPowder_button();
@@ -161,6 +180,14 @@ private slots:
 
     void on_refreshBackButt_clicked();
 
+    void cleanLintTrap();
+
+    void onCycleFinished();
+
+    void cleanWaterTank();
+
+    void cleanDetergentTray();
+
     // water filling things
     void startSlider(QLabel* label, QLabel* holderLabel, QMovie * spinnerMovie,QTimer* timer);
 
@@ -168,8 +195,18 @@ private slots:
     void moveHeatingWaterSlider();
 
 private:
-    Ui::MainWindow *ui;
+    SceneModifier *modifier;  // Add this line
 
+    // Add these declarations
+    void startDetergentFilling();
+    void startSoftenerFilling();
+
+
+    Ui::MainWindow *ui;
+    QTimer *detergentTimer = nullptr;
+    QTimer *softenerTimer = nullptr;
+    int detergentValue = 0;
+    int softenerValue = 0;
     Qt3DCore::QTransform *modelTransform = nullptr;
     QWidget *overlay = nullptr;
 
