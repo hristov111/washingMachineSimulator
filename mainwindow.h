@@ -174,6 +174,8 @@ private slots:
     void moveRinseWaterSlider();
     void moveSpinWaterSlider();
     void moveSteamWaterSlider();
+    void movedryWaterSlider();
+    void moveAntiCreaseWaterSlider();
 
     void prepareHeatingFunction();
     void prepareDrainingFunction();
@@ -182,6 +184,8 @@ private slots:
     void prepareWashWaterFunction();
     void prepareRinseWaterFunction();
     void prepareSteamWaterFunction();
+    void prepareDryWaterFunction();
+    void prepareAntiCreaseWaterFunction();
 
     void calculateIncrementationForSliders(QSlider* slider,double time,double& current,int& max,int& steps, double&increment, int targetValue = 0);
     void calculateDecrementationForSliders(QSlider* slider, double time);
@@ -195,12 +199,24 @@ private slots:
     QString formatSecondsToHourMinute(int seconds);
 
     void setSliderAttributesSuccess(QTimer*& timer, QMovie*& movie, QLabel*& label,QLabel*& holderLabel);
+    void clearSlider(QTimer*& timer, QMovie*& movie, QLabel*& label,QLabel*& holderLabel);
+
 
     void setProgramLabelTime(double time);
 
     void distributeSecondsForCottons(double& mainSlider);
+    void distributeEcoTimeForCottons();
+    void distributeEcoTimeForCottonsEco();
+    void distributeEcoTimeForAntiAllergy();
+    void distributeEcoTimeForNonStop();
+    void distributeEcoTimeForAntiCrease();
+    void distributeEcoTimeForRefresh();
 
+    void setSlidersToZero();
+    void stopTimersAndOthers();
     void setTempSliderMinMax(QComboBox*& box);
+
+    void on_emergencyStopButton_clicked();
 
 private:
     Ui::MainWindow *ui;
@@ -213,6 +229,8 @@ private:
 
     QWidget *container = nullptr;
 
+    QString emergencyProgramStop;
+
 
     // times for sliders fo how long to be filling depending on user options
     double fillWaterTimeSlider;
@@ -224,6 +242,7 @@ private:
     double steamTimeSlider;
     double preWashTimeSlider;
     double antiCreaseTimeSlider;
+    double dryWaterTimeSlider;
 
     double fillingWaterCurrentValueForIncrement;
     double currentValueSliderForIncrement;
@@ -243,11 +262,10 @@ private:
     // for cottons steps
     /*FillWater → HeatWater → WashCycle → DrainWater → RinseCycle → DrainWater → SpinCycle → Complete*/
     int cottonsStep = 0;
-    int synthStep = 0;
-    int woolsilkStep = 0;
-    int antiAllergyStep = 0;
-    int nonstopStep = 0;
-    int antiCrease = 0;
+    bool isAntiAllergy = false;
+    bool isnonstopStep = false;
+    bool isAntiCrease = false;
+    bool isRefresh = false;
 
 
     // variables useful for calculations of the endtime
@@ -311,6 +329,19 @@ private:
     QElapsedTimer * steamWaterElapsedTimer = nullptr;
     QLabel * steamWaterLabel = nullptr;
     QMovie* steamWaterSpinnerMovie = nullptr;
+
+    // for drying
+    QTimer* dryWaterSliderTimer = nullptr;
+    QElapsedTimer * dryWaterElapsedTimer = nullptr;
+    QLabel * dryWaterLabel = nullptr;
+    QMovie* dryWaterSpinnerMovie = nullptr;
+
+    // for antiCrease
+    QTimer* antiCreaseWaterSliderTimer = nullptr;
+    QElapsedTimer * antiCreaseWaterElapsedTimer = nullptr;
+    QLabel * antiCreaseWaterLabel = nullptr;
+    QMovie* atniCreaseWaterSpinnerMovie = nullptr;
+
 
 protected:
     void resizeEvent(QResizeEvent *event) override;

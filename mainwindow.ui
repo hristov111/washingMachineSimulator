@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1197</width>
-    <height>606</height>
+    <width>1206</width>
+    <height>670</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -23,7 +23,7 @@
       <x>10</x>
       <y>10</y>
       <width>931</width>
-      <height>581</height>
+      <height>611</height>
      </rect>
     </property>
     <widget class="QLabel" name="tempLabel_10">
@@ -105,7 +105,7 @@ font-size:20px;
       <x>950</x>
       <y>10</y>
       <width>241</width>
-      <height>581</height>
+      <height>631</height>
      </rect>
     </property>
     <property name="currentIndex">
@@ -2163,7 +2163,7 @@ font-size:15px;
      <widget class="QLabel" name="ecomodeLabel_7">
       <property name="geometry">
        <rect>
-        <x>0</x>
+        <x>20</x>
         <y>350</y>
         <width>131</width>
         <height>31</height>
@@ -2219,8 +2219,8 @@ font-size:20px;
      <widget class="QPushButton" name="nonStopStartButt">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>510</y>
+        <x>0</x>
+        <y>500</y>
         <width>101</width>
         <height>51</height>
        </rect>
@@ -2238,8 +2238,8 @@ padding:5px;
      <widget class="QPushButton" name="nonStopBackButton">
       <property name="geometry">
        <rect>
-        <x>140</x>
-        <y>510</y>
+        <x>130</x>
+        <y>500</y>
         <width>101</width>
         <height>51</height>
        </rect>
@@ -2257,7 +2257,7 @@ padding:5px;
      <widget class="QComboBox" name="nonStopEcoModeBox">
       <property name="geometry">
        <rect>
-        <x>130</x>
+        <x>140</x>
         <y>350</y>
         <width>91</width>
         <height>31</height>
@@ -2735,11 +2735,6 @@ font-size:15px;
       </property>
       <item>
        <property name="text">
-        <string>No Spin</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
         <string>200RPM</string>
        </property>
       </item>
@@ -2923,7 +2918,7 @@ padding:5px;
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>10</y>
+        <y>0</y>
         <width>151</width>
         <height>41</height>
        </rect>
@@ -3514,6 +3509,49 @@ padding:6px;
        <string>0.20</string>
       </property>
      </widget>
+     <widget class="QLabel" name="dryLabelOptions">
+      <property name="geometry">
+       <rect>
+        <x>180</x>
+        <y>490</y>
+        <width>49</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Extra Dry</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="emergencyStopButton">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>560</y>
+        <width>181</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"> QPushButton {
+        background-color: red;
+        color: white;
+        font-weight: bold;
+        font-size: 20px;
+        border: 3px solid darkred;
+        border-radius: 10px;
+        padding: 10px;
+    }
+    QPushButton:hover {
+        background-color: #ff3333;
+    }
+    QPushButton:pressed {
+        background-color: darkred;
+    }</string>
+      </property>
+      <property name="text">
+       <string>Emergency Stop</string>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="page"/>
    </widget>
@@ -3523,7 +3561,7 @@ padding:6px;
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1197</width>
+     <width>1206</width>
      <height>22</height>
     </rect>
    </property>
