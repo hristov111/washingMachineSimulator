@@ -130,6 +130,60 @@ color:blue;
        <string>Insert Powder</string>
       </property>
      </widget>
+     <widget class="QPushButton" name="cleanLintButton">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>190</y>
+        <width>231</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton{font-size:15px;
+color:blue;
+}</string>
+      </property>
+      <property name="text">
+       <string>Clean Lint</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="cleanDetergentButton">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>280</y>
+        <width>231</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton{font-size:15px;
+color:blue;
+}</string>
+      </property>
+      <property name="text">
+       <string>Clean Detergent</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="cleanWaterButton">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>90</y>
+        <width>231</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton{font-size:15px;
+color:blue;
+}</string>
+      </property>
+      <property name="text">
+       <string>Clean Water Tank</string>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="programsPage">
      <widget class="QPushButton" name="cottonsButton">
@@ -2583,7 +2637,7 @@ padding:5px;
        <string>START</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="goBackButton_7">
+     <widget class="QPushButton" name="antiCreaseBackButton">
       <property name="geometry">
        <rect>
         <x>130</x>

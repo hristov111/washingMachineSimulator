@@ -35,6 +35,24 @@
 
 #include <QLabel>
 
+
+const QMap<QString,ProgramFill> programFills {
+    { "Cottons",     { 1.00f, 0.50f, 0.20f, 10, 20, 50 } },
+    { "CottonsEco",  { 0.90f, 0.40f, 0.25f, 10, 25, 40 } },
+    { "Synthetics",  { 0.80f, 0.35f, 0.15f, 12, 30, 60 } },
+    { "Wool/Silk",   { 0.60f, 0.25f, 0.10f, 15, 40, 80 } },
+    { "AntiAllergy", { 1.00f, 0.60f, 0.40f, 10, 15, 25 } },
+    { "NonStop",     { 0.70f, 0.30f, 0.20f, 14, 28, 56 } },
+    { "AntiCrease",  { 0.50f, 0.20f, 0.10f, 20, 50, 100 } },
+    { "Refresh",     { 0.40f, 0.15f, 0.05f, 25, 60, 200 } }
+};
+
+int waterRuns = 0;
+int lintRuns  = 0;
+int detRuns   = 0;
+
+QString currentProgram = "";
+
 #include <functional>
 
 
@@ -104,15 +122,15 @@ MainWindow::MainWindow(QWidget *parent)
     // Camera
     Qt3DRender::QCamera *camera = view->camera();
     camera->lens()->setPerspectiveProjection(45.0f, 16.0f/9.0f, 0.1f, 1000.0f);
-    camera->setPosition(QVector3D(0.0f, 0.0f, 7.0f));
-    camera->setViewCenter(QVector3D(0, 0, 0));
+    camera->setPosition(QVector3D(5.0f, 3.0f, 10.0f));  // Diagonal view
+    camera->setViewCenter(QVector3D(0, -1.0f, 0));
 
 
     // Load 3D Model
     modelTransform = new Qt3DCore::QTransform();
     view->setTargetTransform(modelTransform);
     Qt3DRender::QSceneLoader *loader = new Qt3DRender::QSceneLoader(rootEntity);
-    loader->setSource(QUrl::fromLocalFile("C:\\Users\\vboxuser\\Documents\\managementsystem\\assets\\scene.gltf"));
+    loader->setSource(QUrl::fromLocalFile("C:\\Users\\User\\washingMachineSimulator\\assets\\scene.gltf"));
 
     auto *modelEntity = new Qt3DCore::QEntity(rootEntity);
     modelTransform->setScale(5.0f);
@@ -132,7 +150,12 @@ MainWindow::MainWindow(QWidget *parent)
 
 
     // lets place drawer label
-    SceneModifier *modifier = new SceneModifier(rootEntity);
+     modifier = new SceneModifier(rootEntity);
+    // Add progress bars to the scene
+    modifier->addProgressBars();
+
+    // Initialize levels to 0
+    modifier->updateProgressBars(0, 0, 0);
     // Insert Powder labhel
     modifier->add3DLabel("1. Insert Powder",InsertPowderPosition , QColor(Qt::red), colorTable);
     // Select program label
@@ -141,7 +164,6 @@ MainWindow::MainWindow(QWidget *parent)
     modifier->add3DLabel("3. Start Program" ,startProgramPosition, QColor(Qt::red), colorTable);
     // emegrency stop
     modifier->add3DLabel("4. Emergency stop" ,stopProgramPositons, QColor(Qt::red), colorTable);
-
     // connect the buttons
     // for insertPowder
     connect(ui->pushButton,  &QPushButton::clicked, this,&MainWindow::insertPowder_button);
@@ -183,13 +205,17 @@ MainWindow::MainWindow(QWidget *parent)
         backToPrograms([=]() {on_nonStopBackButton_clicked();});
     });
 
-    connect(ui->goBackButton_7, &QPushButton::clicked,this,[=]() {
+    connect(ui->antiCreaseBackButton, &QPushButton::clicked,this,[=]() {
         backToPrograms([=]() {on_antiCreaseBackButton_clicked();});
     });
 
     connect(ui->refreshBackButt, &QPushButton::clicked,this,[=]() {
         backToPrograms([=]() {on_refreshBackButt_clicked();});
     });
+
+    connect(ui->cleanWaterButton,     &QPushButton::clicked, this, &MainWindow::cleanWaterTank);
+    connect(ui->cleanLintButton,      &QPushButton::clicked, this, &MainWindow::cleanLintTrap);
+    connect(ui->cleanDetergentButton, &QPushButton::clicked, this, &MainWindow::cleanDetergentTray);
 
 
     // timers connecting
@@ -235,6 +261,8 @@ MainWindow::MainWindow(QWidget *parent)
     // then reset everything
 
 
+    modifier->addProgressBars();
+    modifier->updateProgressBars(0.0f, 0.0f, 0.0f);
 
 
 
@@ -324,8 +352,6 @@ double subtractHourFloats(double time1, double time2){
 
 // TIMER FUNCTIONS
 
-
-
 void MainWindow::calculateIncrementationForSliders(QSlider* slider, double time, double& current,int& max,int& steps, double&increment,int targetValue){
     current = slider->value();
     max = targetValue == 0? slider->maximum():targetValue;
@@ -413,6 +439,43 @@ void MainWindow::moveWaterFillingSlider(){
             startSlider(heatingWaterLabel,ui->heatingWaterSpinningHolderLabel,heatingWaterSpinnerMovie,heatingWaterSliderTimer,heatingWaterElapsedTimer,std::bind(&MainWindow::prepareHeatingFunction,this));
         }
     }
+}
+
+
+void MainWindow::startDetergentFilling() {
+    auto fill = programFills.value(currentProgram);
+    int target = int(100 * fill.detergentTray);
+    detergentValue = 0;
+    detergentTimer = new QTimer(this);
+    connect(detergentTimer, &QTimer::timeout, [=]() mutable {
+        if (detergentValue < target) {
+            detergentValue++;
+        } else {
+            detergentTimer->stop();
+            startSoftenerFilling();
+        }
+    });
+    detergentTimer->start(50);
+}
+
+
+void MainWindow::startSoftenerFilling() {
+    softenerValue = 0;
+    softenerTimer = new QTimer(this);
+    connect(softenerTimer, &QTimer::timeout, [this]() {
+        if(softenerValue < 100) {
+            softenerValue++;
+        } else {
+            softenerTimer->stop();
+            waterFillingSpinnerMovie->stop();
+            waterFillingLabel->hide();
+            ui->fillingWaterSpinnerHolderLabel->setText("✔");
+            startSlider(heatingWaterLabel,ui->heatingWaterSpinningHolderLabel,
+                        heatingWaterSpinnerMovie,heatingWaterSliderTimer);
+            onCycleFinished();
+        }
+    });
+    softenerTimer->start(50);
 }
 
 void MainWindow::moveHeatingWaterSlider(){
@@ -1013,6 +1076,7 @@ void MainWindow::on_cottonsStartButt_clicked()
     QString ecoMode = ui->cottonsEcoModeBox->currentText();
     QString overAllTime = ui->cottonsHourLabel->text();
     // calculate time
+
     //  default time FOR COTTONS
     int compressedTime = convertAndCompressTime(2.0, 60.0); // this is compressed time for all programs combined
     /*FillWater → HeatWater → WashCycle → DrainWater → RinseCycle → DrainWater → SpinCycle →*/
@@ -1050,6 +1114,13 @@ void MainWindow::on_cottonsStartButt_clicked()
     cottonsStep++;
     startSlider(waterFillingLabel,ui->fillingWaterSpinnerHolderLabel,waterFillingSpinnerMovie,waterFillingSliderTimer,waterFillingElapsedTimer,std::bind(&MainWindow::prepareFillingWaterFunction, this));
     switchToPageByName(ui->stackedWidget, "startProgramPage");
+
+
+    ProgramFill pf = programFills.value("Cottons");
+    // 2) Drive the 3D bars
+
+
+
     emergencyProgramStop = "cottonsDescPage";
     // create the spinner QLabe;l as a child of spinnerHolderLabel
 
@@ -2058,6 +2129,53 @@ void MainWindow::on_refreshBackButt_clicked()
 }
 
 
+void MainWindow::onCycleFinished()
+{
+    const ProgramFill &pf = programFills.value(currentProgram);
+
+    // Increment run‐counts, clamped to their maxima
+    waterRuns = qMin(waterRuns + 1, pf.maxTankRuns);
+    lintRuns  = qMin(lintRuns  + 1, pf.maxLintRuns);
+    detRuns   = qMin(detRuns   + 1, pf.maxDetRuns);
+
+    // Compute fractional fill = runs / maxRuns
+    float fracW = float(waterRuns) / pf.maxTankRuns;
+    float fracL = float(lintRuns ) / pf.maxLintRuns;
+    float fracD = float(detRuns  ) / pf.maxDetRuns;
+
+    // Update the 3D bars
+    modifier->updateProgressBars(fracW, fracL, fracD);
+}
+
+
+void MainWindow::cleanWaterTank()
+{
+    waterRuns = 0;
+    const ProgramFill &pf = programFills.value(currentProgram);
+    modifier->updateProgressBars(0.0f,
+                                 float(lintRuns)  / pf.maxLintRuns,
+                                 float(detRuns )   / pf.maxDetRuns);
+}
+
+void MainWindow::cleanLintTrap()
+{
+    lintRuns = 0;
+    const ProgramFill &pf = programFills.value(currentProgram);
+    modifier->updateProgressBars(float(waterRuns) / pf.maxTankRuns,
+                                 0.0f,
+                                 float(detRuns)    / pf.maxDetRuns);
+}
+
+void MainWindow::cleanDetergentTray()
+{
+    detRuns = 0;
+    const ProgramFill &pf = programFills.value(currentProgram);
+    modifier->updateProgressBars(float(waterRuns) / pf.maxTankRuns,
+                                 float(lintRuns)  / pf.maxLintRuns,
+                                 0.0f);
+}
+
+
 void MainWindow::on_emergencyStopButton_clicked()
 {
     stopTimersAndOthers();
@@ -2084,4 +2202,5 @@ void MainWindow::on_emergencyStopButton_clicked()
     }
     switchToPageByName(ui->stackedWidget, emergencyProgramStop);
 }
+
 
