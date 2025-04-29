@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1198</width>
-    <height>615</height>
+    <width>1206</width>
+    <height>670</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -23,7 +23,7 @@
       <x>10</x>
       <y>10</y>
       <width>931</width>
-      <height>581</height>
+      <height>611</height>
      </rect>
     </property>
     <widget class="QLabel" name="tempLabel_10">
@@ -105,7 +105,7 @@ font-size:20px;
       <x>950</x>
       <y>10</y>
       <width>241</width>
-      <height>581</height>
+      <height>631</height>
      </rect>
     </property>
     <property name="currentIndex">
@@ -2217,7 +2217,7 @@ font-size:15px;
      <widget class="QLabel" name="ecomodeLabel_7">
       <property name="geometry">
        <rect>
-        <x>0</x>
+        <x>20</x>
         <y>350</y>
         <width>131</width>
         <height>31</height>
@@ -2273,8 +2273,8 @@ font-size:20px;
      <widget class="QPushButton" name="nonStopStartButt">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>510</y>
+        <x>0</x>
+        <y>500</y>
         <width>101</width>
         <height>51</height>
        </rect>
@@ -2292,8 +2292,8 @@ padding:5px;
      <widget class="QPushButton" name="nonStopBackButton">
       <property name="geometry">
        <rect>
-        <x>140</x>
-        <y>510</y>
+        <x>130</x>
+        <y>500</y>
         <width>101</width>
         <height>51</height>
        </rect>
@@ -2311,7 +2311,7 @@ padding:5px;
      <widget class="QComboBox" name="nonStopEcoModeBox">
       <property name="geometry">
        <rect>
-        <x>130</x>
+        <x>140</x>
         <y>350</y>
         <width>91</width>
         <height>31</height>
@@ -2789,11 +2789,6 @@ font-size:15px;
       </property>
       <item>
        <property name="text">
-        <string>No Spin</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
         <string>200RPM</string>
        </property>
       </item>
@@ -2976,8 +2971,8 @@ padding:5px;
      <widget class="QLabel" name="startProgramLabel">
       <property name="geometry">
        <rect>
-        <x>40</x>
-        <y>10</y>
+        <x>0</x>
+        <y>0</y>
         <width>151</width>
         <height>41</height>
        </rect>
@@ -3448,13 +3443,167 @@ font-size:15px;
       <property name="geometry">
        <rect>
         <x>200</x>
-        <y>140</y>
+        <y>150</y>
         <width>31</width>
         <height>16</height>
        </rect>
       </property>
       <property name="text">
        <string>40°C</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="minRinseCycle">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>300</y>
+        <width>21</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>0</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="maxRinseCycle">
+      <property name="geometry">
+       <rect>
+        <x>220</x>
+        <y>300</y>
+        <width>16</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>3</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="minSpinSlider200">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>390</y>
+        <width>49</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>200</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="maxSpinSlider1600">
+      <property name="geometry">
+       <rect>
+        <x>200</x>
+        <y>390</y>
+        <width>31</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>1600</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="minSpinSlider800">
+      <property name="geometry">
+       <rect>
+        <x>90</x>
+        <y>390</y>
+        <width>31</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>800</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="minSpinSlider1200">
+      <property name="geometry">
+       <rect>
+        <x>150</x>
+        <y>390</y>
+        <width>31</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>1200</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>360</y>
+        <width>31</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>RPM</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="programStartedHourLabel">
+      <property name="geometry">
+       <rect>
+        <x>160</x>
+        <y>10</y>
+        <width>71</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLabel {
+font-size:20px;
+border:2px solid black;
+padding:6px;
+}</string>
+      </property>
+      <property name="text">
+       <string>0.20</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="dryLabelOptions">
+      <property name="geometry">
+       <rect>
+        <x>180</x>
+        <y>490</y>
+        <width>49</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Extra Dry</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="emergencyStopButton">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>560</y>
+        <width>181</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"> QPushButton {
+        background-color: red;
+        color: white;
+        font-weight: bold;
+        font-size: 20px;
+        border: 3px solid darkred;
+        border-radius: 10px;
+        padding: 10px;
+    }
+    QPushButton:hover {
+        background-color: #ff3333;
+    }
+    QPushButton:pressed {
+        background-color: darkred;
+    }</string>
+      </property>
+      <property name="text">
+       <string>Emergency Stop</string>
       </property>
      </widget>
     </widget>
@@ -3466,8 +3615,8 @@ font-size:15px;
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1198</width>
-     <height>25</height>
+     <width>1206</width>
+     <height>22</height>
     </rect>
    </property>
   </widget>
