@@ -290,6 +290,24 @@ color:blue;
        <string>Refresh</string>
       </property>
      </widget>
+     <widget class="QPushButton" name="goBackToInsertPowderPage">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>570</y>
+        <width>231</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton{font-size:15px;
+color:blue;
+}</string>
+      </property>
+      <property name="text">
+       <string>GO BACK</string>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="cottonsEcoPage">
      <widget class="QLabel" name="cottonsEcoTitle">

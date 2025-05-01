@@ -256,6 +256,9 @@ MainWindow::MainWindow(QWidget *parent)
     antiCreaseWaterElapsedTimer = new QElapsedTimer();
     connect(antiCreaseWaterSliderTimer, &QTimer::timeout, this, &MainWindow::moveAntiCreaseWaterSlider);
 
+    programTimer = new QTimer(this);
+    connect(programTimer, &QTimer::timeout, this,&MainWindow::on_programFinished);
+
 
     // when we start the program we need to collect first the program name and all the comboboxes
     // then reset everything
@@ -294,6 +297,15 @@ void makeButtonRed(std::optional<Qt3DExtras::QPhongMaterial*> res){
         res.value()->setDiffuse(QColor(Qt::red));
     }
 }
+// to switch to insertPowder when finioshed
+void MainWindow::on_programFinished(){
+    if(!programIsRunning){
+        programTimer->stop();
+        onCycleFinished();
+        on_emergencyStopButton_clicked();
+        switchToPageByName(ui->stackedWidget, "insertPowderPage");
+    }
+}
 
 
 void MainWindow::resizeEvent(QResizeEvent * event){
@@ -303,7 +315,7 @@ void MainWindow::resizeEvent(QResizeEvent * event){
     }
 }
 
-void switchToPageByName(QStackedWidget * stackedwidget, const QString& name){
+void MainWindow::switchToPageByName(QStackedWidget * stackedwidget, const QString& name){
     QWidget *page = stackedwidget->findChild<QWidget*>(name);
     if(page)stackedwidget->setCurrentWidget(page);
 }
@@ -448,7 +460,7 @@ void MainWindow::moveHeatingWaterSlider(){
     if(currentValueSliderForIncrement< maxValueSlider){
         ui->heatingWaterSlider->setValue(static_cast<int>(currentValueSliderForIncrement));
     }else {
-        ui->heatingWaterLabel->setText("Heating Water " + QString::number(currentBox->currentText().toInt()));
+        ui->heatingWaterLabel->setText("Heating Water " + currentBox->currentText());
         ui->heatingWaterSlider->setValue(100);
         setProgramLabelTime(heatWaterTimeSlider);
         setSliderAttributesSuccess(heatingWaterSliderTimer,heatingWaterSpinnerMovie ,heatingWaterLabel,ui->heatingWaterSpinningHolderLabel);
@@ -572,7 +584,8 @@ void MainWindow::movedryWaterSlider(){
         ui->dryLabel->setText("Rinsing 100%");
         setProgramLabelTime(dryWaterTimeSlider);
         setSliderAttributesSuccess(dryWaterSliderTimer,dryWaterSpinnerMovie,dryWaterLabel, ui->dryCycleSpinningHolderLabel);
-
+        // we can stop here
+        programIsRunning = false;
     }
 }
 
@@ -584,9 +597,11 @@ void MainWindow::moveAntiCreaseWaterSlider(){
         ui->antiCreaseSlider->setValue(static_cast<int>(currentValueSliderForIncrement));
     }else {
         ui->antiCreaseSlider->setValue(100);
-        ui->antiCreaseLabel->setText("Rinsing 100%");
+        ui->antiCreaseLabel->setText("AntiCrease 100%");
         setProgramLabelTime(dryWaterTimeSlider);
         setSliderAttributesSuccess(antiCreaseWaterSliderTimer,atniCreaseWaterSpinnerMovie,antiCreaseWaterLabel, ui->antiCreaseSpinningHolderLabel);
+        // we can stop here
+        programIsRunning = false;
     }
 }
 
@@ -604,15 +619,14 @@ void MainWindow::moveSpinWaterSlider(){
         setSliderAttributesSuccess(spinWaterSliderTimer,spinWaterSpinnerMovie,spinWaterLabel, ui->spinCycleSpinningHolderLabel);
 
         if(isnonstopStep){
-            onCycleFinished();
             startSlider(dryWaterLabel,ui->dryCycleSpinningHolderLabel,dryWaterSpinnerMovie,dryWaterSliderTimer,dryWaterElapsedTimer,std::bind(&MainWindow::prepareDryWaterFunction, this));
 
         }else if(isAntiCrease){
-            onCycleFinished();
             startSlider(antiCreaseWaterLabel,ui->antiCreaseSpinningHolderLabel,atniCreaseWaterSpinnerMovie,antiCreaseWaterSliderTimer,antiCreaseWaterElapsedTimer,std::bind(&MainWindow::prepareAntiCreaseWaterFunction, this));
 
         }else {
-            onCycleFinished();
+            // we can stop here
+            programIsRunning = false;
         }
     }
 }
@@ -702,10 +716,6 @@ void MainWindow::calculateTimedifference(int defaultTime, double& timeslider, in
         timeslider = defaulttimeForProgram+ res;
     }else timeslider = defaulttimeForProgram;
 }
-
-
-
-
 
 void MainWindow::on_cottonsButton_clicked()
 {
@@ -929,23 +939,23 @@ void MainWindow::distributeEcoTimeForCottons(){
             ecoTime --;
             fillWaterTimeSlider++;
         }
-        else if(ecoTime > 0){
+        if(ecoTime > 0){
             ecoTime --;
             heatWaterTimeSlider++;
         }
-        else if(ecoTime > 0){
+        if(ecoTime > 0){
             ecoTime --;
             washCycleTimeSlider++;
         }
-        else if(ecoTime > 0){
+        if(ecoTime > 0){
             ecoTime --;
             drainWaterTimeSlider++;
         }
-        else if(ecoTime > 0){
+        if(ecoTime > 0){
             ecoTime --;
             rinseCycleTimeSlider++;
         }
-        else if(ecoTime > 0){
+        if(ecoTime > 0){
             ecoTime --;
             spinCycleTimeSlider++;
         }
@@ -960,31 +970,31 @@ void MainWindow::distributeEcoTimeForCottonsEco(){
             fillWaterTimeSlider--;
             isIn  = true;
         }
-        else if(ecoTime < 0 && heatWaterTimeSlider > 0){
+        if(ecoTime < 0 && heatWaterTimeSlider > 0){
             ecoTime ++;
             heatWaterTimeSlider--;
             isIn  = true;
 
         }
-        else if(ecoTime < 0 && washCycleTimeSlider> 0){
+        if(ecoTime < 0 && washCycleTimeSlider> 0){
             ecoTime ++;
             washCycleTimeSlider--;
             isIn  = true;
 
         }
-        else if(ecoTime < 0 && drainWaterTimeSlider>0){
+        if(ecoTime < 0 && drainWaterTimeSlider>0){
             ecoTime ++;
             drainWaterTimeSlider--;
             isIn  = true;
 
         }
-        else if(ecoTime < 0 &&rinseCycleTimeSlider > 0 ){
+        if(ecoTime < 0 &&rinseCycleTimeSlider > 0 ){
             ecoTime ++;
             rinseCycleTimeSlider--;
             isIn  = true;
 
         }
-        else if(ecoTime << 0 &&spinCycleTimeSlider > 0 ){
+        if(ecoTime << 0 &&spinCycleTimeSlider > 0 ){
             ecoTime ++;
             spinCycleTimeSlider--;
             isIn  = true;
@@ -1034,6 +1044,7 @@ int MainWindow::convertMinutesToCompressedSeconds(int minutes, double compressio
 void MainWindow::on_cottonsStartButt_clicked()
 {
     currentProgram = "Cottons";
+    programIsRunning = true;
     makeButtonGreen(colorTable->get("3. Start Program"));
     // collect the name of the program
     QString programstertedHourLabel = ui->programStartedHourLabel->text();
@@ -1081,6 +1092,7 @@ void MainWindow::on_cottonsStartButt_clicked()
     // switch to the page
     // signal that we are dealing with cottons
     cottonsStep++;
+    programTimer->start(100);
     startSlider(waterFillingLabel,ui->fillingWaterSpinnerHolderLabel,waterFillingSpinnerMovie,waterFillingSliderTimer,waterFillingElapsedTimer,std::bind(&MainWindow::prepareFillingWaterFunction, this));
     switchToPageByName(ui->stackedWidget, "startProgramPage");
 
@@ -1155,7 +1167,7 @@ void MainWindow::on_cottonsEcoEcoModeBox_currentTextChanged(const QString &arg1)
 void MainWindow::on_cottonsEcoStartButt_clicked()
 {
     currentProgram = "CottonsEco";
-
+    programIsRunning = true;
     makeButtonGreen(colorTable->get("3. Start Program"));
     QString programstertedHourLabel = ui->programStartedHourLabel->text();
     //ui->programStartedHourLabel->setText(ui->cottonsHourLabel->text());
@@ -1199,6 +1211,7 @@ void MainWindow::on_cottonsEcoStartButt_clicked()
     ui->startProgramLabel->setText(program + "Started");
     // switch to the page
     cottonsStep++;
+    programTimer->start(100);
     startSlider(waterFillingLabel,ui->fillingWaterSpinnerHolderLabel,waterFillingSpinnerMovie,waterFillingSliderTimer,waterFillingElapsedTimer,std::bind(&MainWindow::prepareFillingWaterFunction, this));
     switchToPageByName(ui->stackedWidget, "startProgramPage");
 
@@ -1267,7 +1280,7 @@ void MainWindow::on_synthEcoModeBox_currentTextChanged(const QString &arg1)
 void MainWindow::on_synthStartButt_clicked()
 {
     currentProgram = "Synthetics";
-
+    programIsRunning = true;
     makeButtonGreen(colorTable->get("3. Start Program"));
     QString programstertedHourLabel = ui->programStartedHourLabel->text();
     //ui->programStartedHourLabel->setText(ui->cottonsHourLabel->text());
@@ -1312,6 +1325,7 @@ void MainWindow::on_synthStartButt_clicked()
     // switch to the page
     // synth is the same= as cottons
     cottonsStep++;
+    programTimer->start(100);
     startSlider(waterFillingLabel,ui->fillingWaterSpinnerHolderLabel,waterFillingSpinnerMovie,waterFillingSliderTimer,waterFillingElapsedTimer,std::bind(&MainWindow::prepareFillingWaterFunction, this));
     switchToPageByName(ui->stackedWidget, "startProgramPage");
     emergencyProgramStop = "syntheticsPage";
@@ -1371,6 +1385,7 @@ void MainWindow::on_woolSilkEcoModeBox_currentTextChanged(const QString &arg1)
 
 void MainWindow::on_woolSilkStartButt_clicked()
 {
+    programIsRunning = true;
     currentProgram = "Wool/Silk";
     makeButtonGreen(colorTable->get("3. Start Program"));
     QString programstertedHourLabel = ui->programStartedHourLabel->text();
@@ -1414,6 +1429,7 @@ void MainWindow::on_woolSilkStartButt_clicked()
     // switch to the page
     // cottons is much the same as this program
     cottonsStep++;
+    programTimer->start(100);
     startSlider(waterFillingLabel,ui->fillingWaterSpinnerHolderLabel,waterFillingSpinnerMovie,waterFillingSliderTimer,waterFillingElapsedTimer,std::bind(&MainWindow::prepareFillingWaterFunction, this));
     switchToPageByName(ui->stackedWidget, "startProgramPage");
     emergencyProgramStop = "woolSilkPage";
@@ -1533,7 +1549,7 @@ void MainWindow::on_antiAllergySteamBox_currentTextChanged(const QString &arg1)
 void MainWindow::on_antiAllergyStartButt_clicked()
 {
     currentProgram = "AntiAllergy";
-
+    programIsRunning = true;
     makeButtonGreen(colorTable->get("3. Start Program"));
     QString programstertedHourLabel = ui->programStartedHourLabel->text();
     //ui->programStartedHourLabel->setText(ui->cottonsHourLabel->text());
@@ -1578,6 +1594,7 @@ void MainWindow::on_antiAllergyStartButt_clicked()
         isAntiAllergy = true;
     }
     cottonsStep++;
+    programTimer->start(100);
     startSlider(waterFillingLabel,ui->fillingWaterSpinnerHolderLabel,waterFillingSpinnerMovie,waterFillingSliderTimer,waterFillingElapsedTimer,std::bind(&MainWindow::prepareFillingWaterFunction, this));
     switchToPageByName(ui->stackedWidget, "startProgramPage");
     emergencyProgramStop = "antiAllergyPage";
@@ -1689,7 +1706,7 @@ void MainWindow::on_nonStopEcoModeBox_currentTextChanged(const QString &arg1)
 void MainWindow::on_nonStopStartButt_clicked()
 {
     currentProgram = "NonStop";
-
+    programIsRunning = true;
     makeButtonGreen(colorTable->get("3. Start Program"));
     QString programstertedHourLabel = ui->programStartedHourLabel->text();
     //ui->programStartedHourLabel->setText(ui->cottonsHourLabel->text());
@@ -1733,6 +1750,7 @@ void MainWindow::on_nonStopStartButt_clicked()
     // cottons is much the same as this program
     isnonstopStep = true;
     cottonsStep++;
+    programTimer->start(100);
     startSlider(waterFillingLabel,ui->fillingWaterSpinnerHolderLabel,waterFillingSpinnerMovie,waterFillingSliderTimer,waterFillingElapsedTimer,std::bind(&MainWindow::prepareFillingWaterFunction, this));
     switchToPageByName(ui->stackedWidget, "startProgramPage");
     emergencyProgramStop = "nonStopPage";
@@ -1842,7 +1860,7 @@ void MainWindow::on_antiCreaseEcoModeBox_currentTextChanged(const QString &arg1)
 void MainWindow::on_antiCreaseStartButt_clicked()
 {
     currentProgram = "AntiCrease";
-
+    programIsRunning = true;
     makeButtonGreen(colorTable->get("3. Start Program"));
     QString programstertedHourLabel = ui->programStartedHourLabel->text();
     //ui->programStartedHourLabel->setText(ui->cottonsHourLabel->text());
@@ -1891,6 +1909,7 @@ void MainWindow::on_antiCreaseStartButt_clicked()
     // switch to the page
     // cottons is much the same as this program
     cottonsStep++;
+    programTimer->start(100);
     startSlider(waterFillingLabel,ui->fillingWaterSpinnerHolderLabel,waterFillingSpinnerMovie,waterFillingSliderTimer,waterFillingElapsedTimer,std::bind(&MainWindow::prepareFillingWaterFunction, this));
     switchToPageByName(ui->stackedWidget, "startProgramPage");
     emergencyProgramStop = "antiCreasePage";
@@ -1976,7 +1995,7 @@ void MainWindow::on_refreshEcoModeBox_currentTextChanged(const QString &arg1)
 void MainWindow::on_refreshStartButt_clicked()
 {
     currentProgram = "Refresh";
-
+    programIsRunning = true;
     QString programstertedHourLabel = ui->programStartedHourLabel->text();
     //ui->programStartedHourLabel->setText(ui->cottonsHourLabel->text());
     QString program = ui->antiCreaseTitle->text();
@@ -2015,16 +2034,11 @@ void MainWindow::on_refreshStartButt_clicked()
     ui->startProgramLabel->setText(program + "Started");
     // switch to the page
     // cottons is much the same as this program
+    programTimer->start(100);
     startSlider(heatingWaterLabel,ui->heatingWaterSpinningHolderLabel,heatingWaterSpinnerMovie,heatingWaterSliderTimer,heatingWaterElapsedTimer,std::bind(&MainWindow::prepareHeatingFunction, this));
     switchToPageByName(ui->stackedWidget, "startProgramPage");
     emergencyProgramStop = "refreshPage";
 }
-
-// back buttons
-
-
-
-
 
 
 void MainWindow::on_cottonsEcoBackButton_clicked()
@@ -2115,17 +2129,14 @@ void MainWindow::onCycleFinished()
 {
     const ProgramFill &pf = programFills.value(currentProgram);
 
-    // Increment run‐counts, clamped to their maxima
     waterRuns = qMin(waterRuns + 1, pf.maxTankRuns);
     lintRuns  = qMin(lintRuns  + 1, pf.maxLintRuns);
     detRuns   = qMin(detRuns   + 1, pf.maxDetRuns);
 
-    // Compute fractional fill = runs / maxRuns
     float fracW = float(waterRuns) / pf.maxTankRuns;
     float fracL = float(lintRuns ) / pf.maxLintRuns;
     float fracD = float(detRuns  ) / pf.maxDetRuns;
 
-    // Update the 3D bars
     modifier->updateProgressBars(fracW, fracL, fracD);
 }
 
@@ -2187,4 +2198,8 @@ void MainWindow::on_emergencyStopButton_clicked()
     switchToPageByName(ui->stackedWidget, emergencyProgramStop);
 }
 
+void MainWindow::on_goBackToInsertPowderPage_clicked()
+{
+    switchToPageByName(ui->stackedWidget, "insertPowderPage");
+}
 

@@ -12,6 +12,7 @@
 #include <QSlider>
 #include <functional>
 #include <QComboBox>
+#include <QStackedWidget>
 
 #include "myhashtable.h"
 class SceneModifier;
@@ -245,9 +246,14 @@ private slots:
 
     void on_emergencyStopButton_clicked();
 
+    void on_goBackToInsertPowderPage_clicked();
+
+    void on_programFinished();
+    void switchToPageByName(QStackedWidget * stackedwidget, const QString& name);
+
 private:
     SceneModifier *modifier;  // Add this line
-
+    bool programIsRunning = false;
     // Add these declarations
     void startDetergentFilling();
     void startSoftenerFilling();
@@ -315,6 +321,8 @@ private:
     int anticreaseTime = 0;
 
     float endTime = 2.0f;
+
+    QTimer* programTimer = nullptr;
 
     // timers for sliders, labels,movie
     bool fillingWaterisIncrementing = true;
