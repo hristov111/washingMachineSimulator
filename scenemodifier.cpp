@@ -141,7 +141,7 @@ void SceneModifier::addProgressBars()
                                         QColor(123,201,111),
                                         0.0f);
     barTransforms << detergantTray->groupTransform;
-    addBarLabel("Detergant tray", spos);
+    addBarLabel("Detergent Tray", spos);
 }
 
 void SceneModifier::updateProgressBars(float waterLevel,

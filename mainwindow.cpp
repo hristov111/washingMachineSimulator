@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 
 #include "./ui_mainwindow.h"
+#include <QCoreApplication>
 
 #include "scenemodifier.h"
 #include "interactive3dwindow.h"
@@ -130,7 +131,7 @@ MainWindow::MainWindow(QWidget *parent)
     modelTransform = new Qt3DCore::QTransform();
     view->setTargetTransform(modelTransform);
     Qt3DRender::QSceneLoader *loader = new Qt3DRender::QSceneLoader(rootEntity);
-    loader->setSource(QUrl::fromLocalFile("C:\\Users\\vboxuser\\Documents\\managementsystem\\assets\\scene.gltf"));
+    loader->setSource(QUrl::fromLocalFile(QCoreApplication::applicationDirPath() + "/assets/scene.gltf"));
 
     auto *modelEntity = new Qt3DCore::QEntity(rootEntity);
     modelTransform->setScale(5.0f);
@@ -342,7 +343,7 @@ double addHourFloats(double time1, double time2){
 
 
     int finalHours = totalMinutes / 60;
-    int finalMinutes = totalMinutes / 60;
+    int finalMinutes = totalMinutes % 60;
     return finalHours + (finalMinutes / 100.0);
 }
 
@@ -357,7 +358,7 @@ double subtractHourFloats(double time1, double time2){
 
 
     int finalHours = totalMinutes / 60;
-    int finalMinutes = totalMinutes / 60;
+    int finalMinutes = totalMinutes % 60;
     return finalHours + (finalMinutes / 100.0);
 }
 
@@ -599,7 +600,7 @@ void MainWindow::moveAntiCreaseWaterSlider(){
         ui->antiCreaseSlider->setValue(100);
         ui->antiCreaseLabel->setText("AntiCrease 100%");
         setProgramLabelTime(dryWaterTimeSlider);
-        setSliderAttributesSuccess(antiCreaseWaterSliderTimer,atniCreaseWaterSpinnerMovie,antiCreaseWaterLabel, ui->antiCreaseSpinningHolderLabel);
+        setSliderAttributesSuccess(antiCreaseWaterSliderTimer,antiCreaseWaterSpinnerMovie,antiCreaseWaterLabel, ui->antiCreaseSpinningHolderLabel);
         // we can stop here
         programIsRunning = false;
     }
@@ -622,7 +623,7 @@ void MainWindow::moveSpinWaterSlider(){
             startSlider(dryWaterLabel,ui->dryCycleSpinningHolderLabel,dryWaterSpinnerMovie,dryWaterSliderTimer,dryWaterElapsedTimer,std::bind(&MainWindow::prepareDryWaterFunction, this));
 
         }else if(isAntiCrease){
-            startSlider(antiCreaseWaterLabel,ui->antiCreaseSpinningHolderLabel,atniCreaseWaterSpinnerMovie,antiCreaseWaterSliderTimer,antiCreaseWaterElapsedTimer,std::bind(&MainWindow::prepareAntiCreaseWaterFunction, this));
+            startSlider(antiCreaseWaterLabel,ui->antiCreaseSpinningHolderLabel,antiCreaseWaterSpinnerMovie,antiCreaseWaterSliderTimer,antiCreaseWaterElapsedTimer,std::bind(&MainWindow::prepareAntiCreaseWaterFunction, this));
 
         }else {
             // we can stop here
@@ -693,7 +694,7 @@ void MainWindow::startSlider(QLabel*& label, QLabel* holderLabel, QMovie *& spin
         label->setAlignment(Qt::AlignCenter);
 
         // Load the spinner movie
-        spinnerMovie = new QMovie("C:\\Users\\vboxuser\\Documents\\managementsystem\\assets\\Spinner@1x-1.0s-60px-60px (1).gif");
+        spinnerMovie = new QMovie(QCoreApplication::applicationDirPath() + "/assets/Spinner@1x-1.0s-60px-60px (1).gif");
         label->setMovie(spinnerMovie);
     }
     // show the label
@@ -803,7 +804,7 @@ void MainWindow::stopTimersAndOthers(){
     clearSlider(spinWaterSliderTimer,rinseWaterSpinnerMovie,rinseWaterLabel, ui->rinseCycleSpinningHolderLabel);
     clearSlider(steamWaterSliderTimer,steamWaterSpinnerMovie,steamWaterLabel, ui->steamSpinningHolderLabel);
     clearSlider(dryWaterSliderTimer,dryWaterSpinnerMovie,dryWaterLabel, ui->dryCycleSpinningHolderLabel);
-    clearSlider(antiCreaseWaterSliderTimer,atniCreaseWaterSpinnerMovie,antiCreaseWaterLabel, ui->antiCreaseSpinningHolderLabel);
+    clearSlider(antiCreaseWaterSliderTimer,antiCreaseWaterSpinnerMovie,antiCreaseWaterLabel, ui->antiCreaseSpinningHolderLabel);
 
 
 
@@ -994,7 +995,7 @@ void MainWindow::distributeEcoTimeForCottonsEco(){
             isIn  = true;
 
         }
-        if(ecoTime << 0 &&spinCycleTimeSlider > 0 ){
+        if(ecoTime < 0 &&spinCycleTimeSlider > 0 ){
             ecoTime ++;
             spinCycleTimeSlider--;
             isIn  = true;

@@ -385,7 +385,7 @@ private:
     QTimer* antiCreaseWaterSliderTimer = nullptr;
     QElapsedTimer * antiCreaseWaterElapsedTimer = nullptr;
     QLabel * antiCreaseWaterLabel = nullptr;
-    QMovie* atniCreaseWaterSpinnerMovie = nullptr;
+    QMovie* antiCreaseWaterSpinnerMovie = nullptr;
 
 
 protected:
